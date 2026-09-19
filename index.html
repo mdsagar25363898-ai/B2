@@ -10,7 +10,7 @@
     box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Inter,Arial,sans-serif;
+    font-family:Arial, sans-serif;
 }
 
 body{
@@ -27,8 +27,6 @@ button{
     cursor:pointer;
 }
 
-/* ---------- APP ---------- */
-
 .app{
     min-height:100vh;
     position:relative;
@@ -41,12 +39,12 @@ button{
     height:300px;
     border-radius:50%;
     filter:blur(100px);
-    opacity:.18;
+    opacity:.15;
     pointer-events:none;
 }
 
 .glow.one{
-    background:#5b5cff;
+    background:#555cff;
     top:-100px;
     left:-100px;
 }
@@ -57,65 +55,69 @@ button{
     bottom:-100px;
 }
 
-/* ---------- SCREENS ---------- */
-
 .screen{
     display:none;
     min-height:100vh;
-    padding:24px;
+    padding:20px;
 }
 
 .screen.active{
-    display:flex;
+    display:block;
 }
 
-/* ---------- SPLASH ---------- */
+
+/* ================= SPLASH ================= */
 
 #splash{
+    display:none;
     align-items:center;
     justify-content:center;
     flex-direction:column;
     text-align:center;
 }
 
+#splash.active{
+    display:flex;
+}
+
 .logo{
     width:90px;
     height:90px;
-    border-radius:26px;
-    background:linear-gradient(135deg,#6566ff,#20d9ff);
+    border-radius:25px;
+    background:linear-gradient(135deg,#6467ff,#20d9ff);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:42px;
+    font-size:40px;
     font-weight:900;
-    box-shadow:0 20px 60px rgba(60,100,255,.35);
+    box-shadow:0 20px 60px rgba(70,100,255,.35);
 }
 
 .brand{
-    margin-top:22px;
     font-size:36px;
-    font-weight:800;
+    font-weight:900;
+    margin-top:20px;
 }
 
 .tagline{
-    margin-top:8px;
-    color:#9da7ba;
+    color:#8995aa;
+    margin-top:7px;
 }
 
 .loader{
     width:160px;
     height:4px;
-    background:#1b2232;
+    background:#1b2435;
     border-radius:20px;
-    margin-top:35px;
     overflow:hidden;
+    margin-top:30px;
 }
 
 .loader span{
     display:block;
     width:50%;
     height:100%;
-    background:#6c70ff;
+    background:#686bff;
     animation:load 1.5s infinite;
 }
 
@@ -124,11 +126,17 @@ button{
     to{transform:translateX(220%)}
 }
 
-/* ---------- WELCOME ---------- */
+
+/* ================= WELCOME ================= */
 
 #welcome{
+    display:none;
     align-items:center;
     justify-content:center;
+}
+
+#welcome.active{
+    display:flex;
 }
 
 .welcome-box{
@@ -138,14 +146,14 @@ button{
 }
 
 .welcome-box h1{
-    font-size:42px;
-    line-height:1.05;
+    font-size:40px;
+    margin-top:25px;
 }
 
 .welcome-box p{
-    color:#9da7ba;
-    margin:18px 0 30px;
+    color:#909bae;
     line-height:1.6;
+    margin:15px 0 28px;
 }
 
 .primary-btn,
@@ -153,56 +161,69 @@ button{
     width:100%;
     padding:15px;
     border-radius:14px;
-    border:0;
     margin-top:12px;
     font-weight:700;
 }
 
 .primary-btn{
-    background:linear-gradient(135deg,#6869ff,#22cfff);
+    background:linear-gradient(135deg,#686aff,#20d0ff);
     color:#fff;
+    border:0;
 }
 
 .secondary-btn{
-    background:#121927;
+    background:#111927;
     color:#fff;
-    border:1px solid #263149;
+    border:1px solid #28344a;
 }
 
-/* ---------- AUTH ---------- */
+
+/* ================= AUTH ================= */
+
+#login,
+#signup{
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+
+#login.active,
+#signup.active{
+    display:flex;
+}
 
 .auth{
     width:100%;
     max-width:430px;
-    margin:auto;
 }
 
 .auth h1{
     font-size:32px;
-    margin-bottom:8px;
+    margin-top:20px;
 }
 
 .auth p{
-    color:#929db1;
-    margin-bottom:28px;
+    color:#8995a9;
+    margin:8px 0 25px;
 }
 
 .input{
     width:100%;
     padding:15px;
-    margin-bottom:13px;
-    background:#101725;
-    border:1px solid #253047;
+    margin-bottom:12px;
     border-radius:13px;
+    border:1px solid #263249;
+    background:#101724;
     color:white;
     outline:none;
 }
 
 .input:focus{
-    border-color:#6869ff;
+    border-color:#686bff;
 }
 
-/* ---------- HOME ---------- */
+
+/* ================= MAIN APP ================= */
 
 #home{
     display:none;
@@ -213,38 +234,40 @@ button{
     display:block;
 }
 
-.home-wrap{
+.app-wrap{
     width:100%;
-    max-width:1250px;
+    max-width:1200px;
     margin:auto;
-    padding:22px;
+    padding:20px;
+    padding-bottom:110px;
 }
 
-/* header */
+
+/* HEADER */
 
 .header{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    margin-bottom:28px;
+    margin-bottom:22px;
 }
 
 .header-left{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:11px;
 }
 
 .small-logo{
     width:45px;
     height:45px;
     border-radius:13px;
-    background:linear-gradient(135deg,#6566ff,#20d9ff);
+    background:linear-gradient(135deg,#6467ff,#20d9ff);
     display:flex;
     align-items:center;
     justify-content:center;
     font-weight:900;
-    font-size:21px;
+    font-size:20px;
 }
 
 .header-title{
@@ -253,103 +276,120 @@ button{
 }
 
 .header-sub{
-    color:#77839a;
+    color:#78849a;
     font-size:12px;
 }
 
 .avatar{
-    width:42px;
-    height:42px;
+    width:43px;
+    height:43px;
     border-radius:50%;
-    background:#192235;
+    background:#172134;
     display:flex;
     align-items:center;
     justify-content:center;
-    color:#aeb9cc;
 }
 
-/* command */
 
-.command{
-    background:linear-gradient(145deg,#111a2a,#0d1421);
-    border:1px solid #202c43;
+/* PAGE */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+
+/* COMMAND */
+
+.command-box{
+    background:linear-gradient(145deg,#111a29,#0c1420);
+    border:1px solid #222e44;
     border-radius:22px;
-    padding:25px;
+    padding:23px;
     margin-bottom:20px;
 }
 
-.command h2{
-    font-size:22px;
+.command-box h2{
+    font-size:21px;
 }
 
-.command p{
-    color:#7e8ba2;
-    margin:8px 0 18px;
+.command-box p{
+    color:#7e8ba0;
+    margin:7px 0 17px;
 }
 
-.command-input{
+.command-row{
     display:flex;
     gap:10px;
 }
 
-.command-input input{
+.command-row input{
     flex:1;
-    padding:16px;
+    padding:15px;
     border-radius:14px;
-    border:1px solid #29354d;
-    background:#080e19;
-    color:#fff;
+    border:1px solid #28354d;
+    background:#080e18;
+    color:white;
     outline:none;
 }
 
-.command-input button{
+.command-row button{
     width:55px;
     border:0;
     border-radius:14px;
-    background:#6668ff;
+    background:#6669ff;
     color:#fff;
     font-size:20px;
 }
 
-/* stats */
+
+/* STATS */
 
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:14px;
+    gap:13px;
     margin-bottom:22px;
 }
 
 .card{
-    background:#101725;
-    border:1px solid #202b40;
-    border-radius:18px;
-    padding:19px;
+    background:#101724;
+    border:1px solid #202c41;
+    border-radius:17px;
+    padding:18px;
 }
 
 .card-label{
-    color:#7f8ba0;
-    font-size:13px;
+    color:#78859a;
+    font-size:12px;
 }
 
 .card-value{
-    font-size:25px;
+    font-size:24px;
     font-weight:800;
-    margin-top:8px;
+    margin-top:7px;
 }
 
 .card-small{
-    color:#6e7b92;
+    color:#68758a;
     font-size:12px;
-    margin-top:5px;
+    margin-top:4px;
 }
 
-/* quick actions */
+
+/* SECTION */
 
 .section-title{
     font-size:18px;
+    font-weight:800;
     margin-bottom:13px;
 }
+
+
+/* ACTIONS */
 
 .actions{
     display:grid;
@@ -358,17 +398,17 @@ button{
 }
 
 .action{
-    background:#101725;
-    border:1px solid #202b40;
+    background:#101724;
+    border:1px solid #202c41;
     border-radius:17px;
-    padding:20px;
-    min-height:120px;
+    padding:18px;
+    cursor:pointer;
     transition:.2s;
 }
 
 .action:hover{
     transform:translateY(-3px);
-    border-color:#555cff;
+    border-color:#6265ff;
 }
 
 .action-icon{
@@ -376,37 +416,360 @@ button{
 }
 
 .action-title{
-    margin-top:12px;
     font-weight:700;
+    margin-top:10px;
 }
 
 .action-sub{
-    color:#707c91;
+    color:#707d92;
+    font-size:12px;
+    margin-top:4px;
+}
+
+
+/* ================= AGENTS ================= */
+
+.agent-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:13px;
+}
+
+.agent-card{
+    background:#101724;
+    border:1px solid #222e43;
+    border-radius:18px;
+    padding:18px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.agent-card:hover{
+    border-color:#6669ff;
+    transform:translateY(-3px);
+}
+
+.agent-icon{
+    font-size:30px;
+}
+
+.agent-name{
+    font-weight:800;
+    margin-top:12px;
+}
+
+.agent-status{
+    color:#63d89b;
+    font-size:12px;
+    margin-top:6px;
+}
+
+.agent-description{
+    color:#77849a;
+    font-size:12px;
+    line-height:1.5;
+    margin-top:9px;
+}
+
+
+/* ================= PROJECT ================= */
+
+.project-list{
+    display:grid;
+    gap:12px;
+}
+
+.project-card{
+    background:#101724;
+    border:1px solid #222e43;
+    border-radius:18px;
+    padding:18px;
+}
+
+.project-top{
+    display:flex;
+    justify-content:space-between;
+}
+
+.project-name{
+    font-weight:800;
+}
+
+.project-status{
+    color:#63d89b;
+    font-size:12px;
+}
+
+.progress{
+    height:7px;
+    background:#1b2638;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:15px;
+}
+
+.progress span{
+    display:block;
+    height:100%;
+    width:68%;
+    background:linear-gradient(90deg,#686aff,#20d9ff);
+}
+
+.project-meta{
+    display:flex;
+    justify-content:space-between;
+    color:#748197;
+    font-size:12px;
+    margin-top:8px;
+}
+
+
+/* ================= TASK CENTER ================= */
+
+.task-card{
+    background:#101724;
+    border:1px solid #222e43;
+    border-radius:19px;
+    padding:20px;
+    margin-bottom:13px;
+}
+
+.task-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.task-title{
+    font-weight:800;
+    font-size:17px;
+}
+
+.running{
+    color:#62d89b;
+    font-size:12px;
+}
+
+.task-agent{
+    color:#7e8ba0;
     font-size:12px;
     margin-top:5px;
 }
 
-/* bottom */
+.task-progress{
+    height:9px;
+    background:#1b2638;
+    border-radius:20px;
+    overflow:hidden;
+    margin:17px 0;
+}
+
+.task-progress span{
+    display:block;
+    width:64%;
+    height:100%;
+    background:linear-gradient(90deg,#676aff,#20d9ff);
+}
+
+.cost-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:9px;
+}
+
+.cost-box{
+    background:#0a101a;
+    border:1px solid #1e2a3e;
+    border-radius:12px;
+    padding:12px;
+}
+
+.cost-label{
+    color:#69768b;
+    font-size:10px;
+}
+
+.cost-value{
+    font-weight:800;
+    margin-top:5px;
+}
+
+.task-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:17px;
+}
+
+.task-btn{
+    flex:1;
+    padding:12px;
+    border-radius:11px;
+    border:1px solid #29364d;
+    background:#141e2e;
+    color:#fff;
+}
+
+.task-btn.stop{
+    background:#301b24;
+    border-color:#62303e;
+}
+
+
+/* ================= WALLET ================= */
+
+.wallet-main{
+    background:linear-gradient(135deg,#171c46,#10283a);
+    border:1px solid #313b6c;
+    border-radius:22px;
+    padding:25px;
+    margin-bottom:18px;
+}
+
+.wallet-label{
+    color:#9aa6c0;
+    font-size:13px;
+}
+
+.wallet-value{
+    font-size:40px;
+    font-weight:900;
+    margin-top:8px;
+}
+
+.wallet-usd{
+    color:#7fdcff;
+    margin-top:4px;
+}
+
+.package-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:15px;
+}
+
+.package{
+    background:#101724;
+    border:1px solid #243149;
+    border-radius:16px;
+    padding:18px;
+    cursor:pointer;
+}
+
+.package:hover{
+    border-color:#6669ff;
+}
+
+.package-price{
+    font-size:20px;
+    font-weight:800;
+}
+
+.package-credit{
+    color:#7c899f;
+    margin-top:6px;
+    font-size:12px;
+}
+
+
+/* ================= SUBSCRIPTION ================= */
+
+.subscription-card{
+    background:linear-gradient(135deg,#161b39,#101c2b);
+    border:1px solid #30385e;
+    border-radius:20px;
+    padding:23px;
+}
+
+.subscription-price{
+    font-size:35px;
+    font-weight:900;
+    margin-top:10px;
+}
+
+.subscription-status{
+    color:#63d89b;
+    margin-top:8px;
+}
+
+.subscription-info{
+    color:#78859b;
+    font-size:13px;
+    line-height:1.7;
+    margin-top:14px;
+}
+
+
+/* ================= LIVE TASK ================= */
+
+.live-task{
+    background:#0e1623;
+    border:1px solid #29364d;
+    border-radius:20px;
+    padding:20px;
+}
+
+.live-top{
+    display:flex;
+    justify-content:space-between;
+}
+
+.live-badge{
+    background:#13372b;
+    color:#62d89b;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:11px;
+}
+
+.live-title{
+    font-size:21px;
+    font-weight:800;
+    margin-top:10px;
+}
+
+.live-cost{
+    margin-top:20px;
+    padding:16px;
+    background:#080e18;
+    border-radius:15px;
+}
+
+.live-cost-title{
+    color:#79869b;
+    font-size:12px;
+}
+
+.live-cost-value{
+    font-size:30px;
+    font-weight:900;
+    margin-top:5px;
+}
+
+
+/* ================= BOTTOM NAV ================= */
 
 .bottom-nav{
     position:fixed;
-    bottom:0;
     left:50%;
+    bottom:0;
     transform:translateX(-50%);
-    width:min(700px,calc(100% - 25px));
-    background:rgba(13,19,31,.94);
-    border:1px solid #263149;
+    width:min(720px,calc(100% - 20px));
+    background:rgba(12,18,29,.96);
+    border:1px solid #27344a;
     backdrop-filter:blur(18px);
     border-radius:20px 20px 0 0;
     display:flex;
     justify-content:space-around;
-    padding:12px;
+    padding:10px;
+    z-index:20;
 }
 
 .nav-item{
-    color:#68758c;
+    color:#69768c;
     text-align:center;
-    font-size:11px;
+    font-size:10px;
+    cursor:pointer;
 }
 
 .nav-item span{
@@ -419,9 +782,11 @@ button{
     color:#fff;
 }
 
-/* responsive */
+
+/* ================= RESPONSIVE ================= */
 
 @media(max-width:800px){
+
     .stats{
         grid-template-columns:repeat(2,1fr);
     }
@@ -429,28 +794,46 @@ button{
     .actions{
         grid-template-columns:repeat(2,1fr);
     }
+
+    .agent-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .cost-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 }
 
 @media(max-width:500px){
-    .welcome-box h1{
-        font-size:34px;
-    }
 
-    .home-wrap{
-        padding:16px;
+    .app-wrap{
+        padding:15px;
         padding-bottom:100px;
     }
 
-    .command-input{
+    .actions{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .agent-grid{
+        grid-template-columns:1fr;
+    }
+
+    .package-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .command-row{
         flex-direction:column;
     }
 
-    .command-input button{
+    .command-row button{
         width:100%;
+        padding:13px;
     }
 
-    .header{
-        margin-bottom:20px;
+    .wallet-value{
+        font-size:32px;
     }
 }
 </style>
@@ -462,6 +845,7 @@ button{
 
 <div class="glow one"></div>
 <div class="glow two"></div>
+
 
 <!-- ================= SPLASH ================= -->
 
@@ -488,16 +872,18 @@ button{
 
     <div class="welcome-box">
 
-        <div class="logo" style="margin:auto">B2</div>
+        <div class="logo" style="margin:auto">
+            B2
+        </div>
 
-        <h1 style="margin-top:25px">
+        <h1>
             Your AI Workforce
         </h1>
 
         <p>
             Tell B2 what you need.
-            B2 can plan, coordinate and execute
-            authorized work through specialized AI agents.
+            B2 coordinates specialized AI agents
+            to handle authorized work.
         </p>
 
         <button class="primary-btn"
@@ -526,42 +912,28 @@ button{
             B2
         </div>
 
-        <h1 style="margin-top:25px">
-            Welcome back
-        </h1>
+        <h1>Welcome back</h1>
 
         <p>
-            Log in to continue working with B2.
+            Log in to continue with B2.
         </p>
 
-        <input
-            class="input"
-            type="email"
-            placeholder="Email address"
-        >
+        <input class="input"
+               type="email"
+               placeholder="Email address">
 
-        <input
-            class="input"
-            type="password"
-            placeholder="Password"
-        >
+        <input class="input"
+               type="password"
+               placeholder="Password">
 
-        <button
-            class="primary-btn"
-            onclick="loginDemo()">
+        <button class="primary-btn"
+                onclick="loginDemo()">
             Log In
         </button>
 
-        <button
-            class="secondary-btn"
-            onclick="showScreen('signup')">
-            Create a new account
-        </button>
-
-        <button
-            class="secondary-btn"
-            onclick="showScreen('welcome')">
-            Back
+        <button class="secondary-btn"
+                onclick="showScreen('signup')">
+            Create Account
         </button>
 
     </div>
@@ -569,7 +941,7 @@ button{
 </section>
 
 
-<!-- ================= SIGN UP ================= -->
+<!-- ================= SIGNUP ================= -->
 
 <section id="signup" class="screen">
 
@@ -580,41 +952,31 @@ button{
             B2
         </div>
 
-        <h1 style="margin-top:25px">
-            Create your B2 account
-        </h1>
+        <h1>Create your account</h1>
 
         <p>
             Start building your AI workforce.
         </p>
 
-        <input
-            class="input"
-            type="text"
-            placeholder="Full name"
-        >
+        <input class="input"
+               type="text"
+               placeholder="Full name">
 
-        <input
-            class="input"
-            type="email"
-            placeholder="Email address"
-        >
+        <input class="input"
+               type="email"
+               placeholder="Email address">
 
-        <input
-            class="input"
-            type="password"
-            placeholder="Create password"
-        >
+        <input class="input"
+               type="password"
+               placeholder="Create password">
 
-        <button
-            class="primary-btn"
-            onclick="loginDemo()">
+        <button class="primary-btn"
+                onclick="loginDemo()">
             Create Account
         </button>
 
-        <button
-            class="secondary-btn"
-            onclick="showScreen('login')">
+        <button class="secondary-btn"
+                onclick="showScreen('login')">
             Already have an account
         </button>
 
@@ -623,40 +985,39 @@ button{
 </section>
 
 
-<!-- ================= HOME ================= -->
+<!-- ================= MAIN APP ================= -->
 
 <section id="home" class="screen">
 
-<div class="home-wrap">
+<div class="app-wrap">
 
-    <header class="header">
+<header class="header">
 
-        <div class="header-left">
+    <div class="header-left">
 
-            <div class="small-logo">B2</div>
+        <div class="small-logo">B2</div>
 
-            <div>
-                <div class="header-title">
-                    B2
-                </div>
-
-                <div class="header-sub">
-                    AI Work Agent
-                </div>
+        <div>
+            <div class="header-title">B2</div>
+            <div class="header-sub">
+                AI Work Agent
             </div>
-
         </div>
 
-        <div class="avatar">
-            👤
-        </div>
+    </div>
 
-    </header>
+    <div class="avatar">
+        👤
+    </div>
+
+</header>
 
 
-    <!-- COMMAND -->
+<!-- ================= HOME PAGE ================= -->
 
-    <div class="command">
+<div id="page-home" class="page active">
+
+    <div class="command-box">
 
         <h2>
             What can B2 do for you?
@@ -666,13 +1027,10 @@ button{
             Describe the work you want B2 to handle.
         </p>
 
-        <div class="command-input">
+        <div class="command-row">
 
-            <input
-                id="commandInput"
-                type="text"
-                placeholder="Tell B2 what you want done..."
-            >
+            <input id="commandInput"
+                   placeholder="Tell B2 what you want done...">
 
             <button onclick="startCommand()">
                 ➤
@@ -683,8 +1041,6 @@ button{
     </div>
 
 
-    <!-- STATS -->
-
     <div class="stats">
 
         <div class="card">
@@ -694,7 +1050,9 @@ button{
             </div>
 
             <div class="card-value">
-                12,500
+                <span id="creditBalance">
+                    12,500
+                </span>
             </div>
 
             <div class="card-small">
@@ -757,8 +1115,6 @@ button{
     </div>
 
 
-    <!-- QUICK ACTIONS -->
-
     <div class="section-title">
         Quick Actions
     </div>
@@ -766,128 +1122,285 @@ button{
     <div class="actions">
 
         <div class="action"
-             onclick="quickCommand('Build an app')">
-
+             onclick="startTask('Build App','Coding Agent')">
             <div class="action-icon">💻</div>
-
-            <div class="action-title">
-                Build App
-            </div>
-
+            <div class="action-title">Build App</div>
             <div class="action-sub">
                 Create software
             </div>
-
         </div>
 
-
         <div class="action"
-             onclick="quickCommand('Build a game')">
-
+             onclick="startTask('Build Game','Game Agent')">
             <div class="action-icon">🎮</div>
-
-            <div class="action-title">
-                Build Game
-            </div>
-
+            <div class="action-title">Build Game</div>
             <div class="action-sub">
                 Game development
             </div>
-
         </div>
 
-
         <div class="action"
-             onclick="quickCommand('Run a security check')">
-
+             onclick="startTask('Security Check','Security Agent')">
             <div class="action-icon">🛡️</div>
-
-            <div class="action-title">
-                Security
-            </div>
-
+            <div class="action-title">Security</div>
             <div class="action-sub">
-                Check your systems
+                Protect systems
             </div>
-
         </div>
 
-
         <div class="action"
-             onclick="quickCommand('Analyze my data')">
-
+             onclick="startTask('Data Analysis','Data Agent')">
             <div class="action-icon">📊</div>
-
-            <div class="action-title">
-                Data
-            </div>
-
+            <div class="action-title">Data</div>
             <div class="action-sub">
                 Analyze data
             </div>
-
         </div>
 
-
         <div class="action"
-             onclick="quickCommand('Design UI/UX')">
-
+             onclick="startTask('UI/UX Design','UI/UX Agent')">
             <div class="action-icon">🎨</div>
-
-            <div class="action-title">
-                UI / UX
-            </div>
-
+            <div class="action-title">UI / UX</div>
             <div class="action-sub">
                 Design interfaces
             </div>
-
         </div>
 
-
         <div class="action"
-             onclick="quickCommand('Create a 3D asset')">
-
+             onclick="startTask('3D Asset','3D Agent')">
             <div class="action-icon">🧊</div>
-
-            <div class="action-title">
-                3D Assets
-            </div>
-
+            <div class="action-title">3D Assets</div>
             <div class="action-sub">
                 Create 3D content
             </div>
-
         </div>
 
-
         <div class="action"
-             onclick="quickCommand('Create a video')">
-
+             onclick="startTask('Video Creation','Video Agent')">
             <div class="action-icon">🎬</div>
-
-            <div class="action-title">
-                Video
-            </div>
-
+            <div class="action-title">Video</div>
             <div class="action-sub">
                 Create videos
             </div>
+        </div>
+
+        <div class="action"
+             onclick="startTask('ASO Optimization','ASO Agent')">
+            <div class="action-icon">📱</div>
+            <div class="action-title">ASO</div>
+            <div class="action-sub">
+                Optimize store listing
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= AGENTS ================= -->
+
+<div id="page-agents" class="page">
+
+    <div class="section-title">
+        B2 Specialist Agents
+    </div>
+
+    <div class="agent-grid">
+
+        <div class="agent-card">
+            <div class="agent-icon">💻</div>
+            <div class="agent-name">
+                Coding Agent
+            </div>
+            <div class="agent-status">
+                ● Available
+            </div>
+            <div class="agent-description">
+                Builds software, APIs and application features.
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-icon">🛡️</div>
+            <div class="agent-name">
+                Security Agent
+            </div>
+            <div class="agent-status">
+                ● Available
+            </div>
+            <div class="agent-description">
+                Monitors authorized systems and security events.
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-icon">🎨</div>
+            <div class="agent-name">
+                UI/UX Agent
+            </div>
+            <div class="agent-status">
+                ● Available
+            </div>
+            <div class="agent-description">
+                Designs interfaces, flows and design systems.
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-icon">🧪</div>
+            <div class="agent-name">
+                QA Agent
+            </div>
+            <div class="agent-status">
+                ● Available
+            </div>
+            <div class="agent-description">
+                Tests software and detects bugs.
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-icon">🧊</div>
+            <div class="agent-name">
+                3D Asset Agent
+            </div>
+            <div class="agent-status">
+                ● Available
+            </div>
+            <div class="agent-description">
+                Creates and optimizes 3D game assets.
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-icon">🎬</div>
+            <div class="agent-name">
+                Video Agent
+            </div>
+            <div class="agent-status">
+                ● Available
+            </div>
+            <div class="agent-description">
+                Creates scripts, videos, captions and thumbnails.
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-icon">📱</div>
+            <div class="agent-name">
+                ASO Agent
+            </div>
+            <div class="agent-status">
+                ● Available
+            </div>
+            <div class="agent-description">
+                Optimizes app store listings and discoverability.
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-icon">☁️</div>
+            <div class="agent-name">
+                DevOps Agent
+            </div>
+            <div class="agent-status">
+                ● Available
+            </div>
+            <div class="agent-description">
+                Monitors servers, deployments and infrastructure.
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-icon">🗄️</div>
+            <div class="agent-name">
+                Data Agent
+            </div>
+            <div class="agent-status">
+                ● Available
+            </div>
+            <div class="agent-description">
+                Manages data pipelines and warehouse workflows.
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= PROJECTS ================= -->
+
+<div id="page-projects" class="page">
+
+    <div class="section-title">
+        Projects
+    </div>
+
+    <div class="project-list">
+
+        <div class="project-card">
+
+            <div class="project-top">
+
+                <div class="project-name">
+                    My New Game
+                </div>
+
+                <div class="project-status">
+                    Active
+                </div>
+
+            </div>
+
+            <div class="progress">
+                <span></span>
+            </div>
+
+            <div class="project-meta">
+
+                <span>
+                    Progress 68%
+                </span>
+
+                <span>
+                    4 Agents
+                </span>
+
+            </div>
 
         </div>
 
 
-        <div class="action"
-             onclick="quickCommand('Optimize my app store listing')">
+        <div class="project-card">
 
-            <div class="action-icon">📱</div>
+            <div class="project-top">
 
-            <div class="action-title">
-                ASO
+                <div class="project-name">
+                    Business App
+                </div>
+
+                <div class="project-status">
+                    Active
+                </div>
+
             </div>
 
-            <div class="action-sub">
-                Store optimization
+            <div class="progress">
+                <span style="width:42%"></span>
+            </div>
+
+            <div class="project-meta">
+
+                <span>
+                    Progress 42%
+                </span>
+
+                <span>
+                    3 Agents
+                </span>
+
             </div>
 
         </div>
@@ -897,31 +1410,334 @@ button{
 </div>
 
 
-<!-- BOTTOM NAV -->
+<!-- ================= TASK CENTER ================= -->
+
+<div id="page-tasks" class="page">
+
+    <div class="section-title">
+        Active Tasks
+    </div>
+
+
+    <div class="task-card">
+
+        <div class="task-header">
+
+            <div>
+                <div class="task-title">
+                    Creating Game
+                </div>
+
+                <div class="task-agent">
+                    Coding Agent + QA Agent
+                </div>
+            </div>
+
+            <div class="running">
+                ● RUNNING
+            </div>
+
+        </div>
+
+
+        <div class="task-progress">
+            <span></span>
+        </div>
+
+
+        <div class="cost-grid">
+
+            <div class="cost-box">
+
+                <div class="cost-label">
+                    BEFORE
+                </div>
+
+                <div class="cost-value">
+                    5,000
+                </div>
+
+            </div>
+
+            <div class="cost-box">
+
+                <div class="cost-label">
+                    USED
+                </div>
+
+                <div class="cost-value">
+                    1,240
+                </div>
+
+            </div>
+
+            <div class="cost-box">
+
+                <div class="cost-label">
+                    BALANCE
+                </div>
+
+                <div class="cost-value"
+                     id="taskBalance">
+                    3,760
+                </div>
+
+            </div>
+
+            <div class="cost-box">
+
+                <div class="cost-label">
+                    COST
+                </div>
+
+                <div class="cost-value">
+                    $12.40
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="task-buttons">
+
+            <button class="task-btn"
+                    onclick="pauseTask(this)">
+                Pause
+            </button>
+
+            <button class="task-btn stop"
+                    onclick="stopTask(this)">
+                Stop
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="section-title"
+         style="margin-top:25px">
+        Live Cost Tracking
+    </div>
+
+
+    <div class="live-task">
+
+        <div class="live-top">
+
+            <div>
+                <div style="color:#7e8ba0;font-size:12px">
+                    REAL-TIME TRACKING
+                </div>
+
+                <div class="live-title">
+                    AI Task Processing
+                </div>
+            </div>
+
+            <div class="live-badge">
+                LIVE
+            </div>
+
+        </div>
+
+
+        <div class="live-cost">
+
+            <div class="live-cost-title">
+                Current Resource Cost
+            </div>
+
+            <div class="live-cost-value">
+                $12.40
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= WALLET ================= -->
+
+<div id="page-wallet" class="page">
+
+    <div class="section-title">
+        B2 Wallet
+    </div>
+
+
+    <div class="wallet-main">
+
+        <div class="wallet-label">
+            Available Credits
+        </div>
+
+        <div class="wallet-value"
+             id="walletCredits">
+            12,500
+        </div>
+
+        <div class="wallet-usd">
+            $125.00
+        </div>
+
+    </div>
+
+
+    <div class="section-title">
+        Buy Credits
+    </div>
+
+    <div class="package-grid">
+
+        <div class="package"
+             onclick="buyCredits(100)">
+            <div class="package-price">
+                $1
+            </div>
+            <div class="package-credit">
+                100 Credits
+            </div>
+        </div>
+
+        <div class="package"
+             onclick="buyCredits(500)">
+            <div class="package-price">
+                $5
+            </div>
+            <div class="package-credit">
+                500 Credits
+            </div>
+        </div>
+
+        <div class="package"
+             onclick="buyCredits(1000)">
+            <div class="package-price">
+                $10
+            </div>
+            <div class="package-credit">
+                1,000 Credits
+            </div>
+        </div>
+
+        <div class="package"
+             onclick="buyCredits(2500)">
+            <div class="package-price">
+                $25
+            </div>
+            <div class="package-credit">
+                2,500 Credits
+            </div>
+        </div>
+
+        <div class="package"
+             onclick="buyCredits(5000)">
+            <div class="package-price">
+                $50
+            </div>
+            <div class="package-credit">
+                5,000 Credits
+            </div>
+        </div>
+
+        <div class="package"
+             onclick="buyCredits(10000)">
+            <div class="package-price">
+                $100
+            </div>
+            <div class="package-credit">
+                10,000 Credits
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= SUBSCRIPTION ================= -->
+
+<div id="page-subscription" class="page">
+
+    <div class="section-title">
+        Subscription
+    </div>
+
+    <div class="subscription-card">
+
+        <div style="color:#9aa6c0">
+            B2 Monthly
+        </div>
+
+        <div class="subscription-price">
+            $5 / month
+        </div>
+
+        <div class="subscription-status">
+            ● Active
+        </div>
+
+        <div class="subscription-info">
+
+            Your subscription allows B2 paid work
+            when you also have sufficient Credits.
+
+            <br><br>
+
+            Credits and subscription are separate.
+
+            <br><br>
+
+            Subscription expires in:
+            <strong>23 days</strong>
+
+        </div>
+
+        <button class="primary-btn"
+                style="margin-top:20px">
+            Manage Subscription
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- ================= BOTTOM NAV ================= -->
 
 <nav class="bottom-nav">
 
-    <div class="nav-item active">
+    <div class="nav-item active"
+         onclick="openPage('home',this)">
         <span>⌂</span>
         Home
     </div>
 
-    <div class="nav-item">
+    <div class="nav-item"
+         onclick="openPage('agents',this)">
         <span>🤖</span>
         Agents
     </div>
 
-    <div class="nav-item">
+    <div class="nav-item"
+         onclick="openPage('projects',this)">
         <span>📁</span>
         Projects
     </div>
 
-    <div class="nav-item">
+    <div class="nav-item"
+         onclick="openPage('tasks',this)">
         <span>⚡</span>
         Tasks
     </div>
 
-    <div class="nav-item">
+    <div class="nav-item"
+         onclick="openPage('wallet',this)">
         <span>💳</span>
         Wallet
     </div>
@@ -935,13 +1751,13 @@ button{
 
 <script>
 
-/* ---------- SCREEN CONTROL ---------- */
+/* ================= SCREEN ================= */
 
 function showScreen(id){
 
     document.querySelectorAll(".screen")
-        .forEach(screen=>{
-            screen.classList.remove("active");
+        .forEach(s=>{
+            s.classList.remove("active");
         });
 
     document.getElementById(id)
@@ -949,14 +1765,14 @@ function showScreen(id){
 }
 
 
-/* ---------- SPLASH ---------- */
+/* ================= SPLASH ================= */
 
 setTimeout(()=>{
     showScreen("welcome");
 },1800);
 
 
-/* ---------- DEMO LOGIN ---------- */
+/* ================= LOGIN ================= */
 
 function loginDemo(){
 
@@ -965,18 +1781,29 @@ function loginDemo(){
 }
 
 
-/* ---------- COMMAND ---------- */
+/* ================= PAGE NAVIGATION ================= */
 
-function quickCommand(text){
+function openPage(page,element){
 
-    document.getElementById("commandInput")
-        .value = text;
+    document.querySelectorAll(".page")
+        .forEach(p=>{
+            p.classList.remove("active");
+        });
 
-    document.getElementById("commandInput")
-        .focus();
+    document.getElementById("page-"+page)
+        .classList.add("active");
+
+    document.querySelectorAll(".nav-item")
+        .forEach(n=>{
+            n.classList.remove("active");
+        });
+
+    element.classList.add("active");
 
 }
 
+
+/* ================= COMMAND ================= */
 
 function startCommand(){
 
@@ -991,12 +1818,83 @@ function startCommand(){
         input.focus();
 
         return;
+
     }
 
+    startTask(command,"AI Orchestrator");
+
+}
+
+
+/* ================= START TASK ================= */
+
+function startTask(task,agent){
+
+    document.querySelectorAll(".page")
+        .forEach(p=>{
+            p.classList.remove("active");
+        });
+
+    document.getElementById("page-tasks")
+        .classList.add("active");
+
+    document.querySelectorAll(".nav-item")
+        .forEach(n=>{
+            n.classList.remove("active");
+        });
+
+    document.querySelectorAll(".nav-item")[3]
+        .classList.add("active");
+
     alert(
-        "B2 received your command:\n\n"
-        + command
-        + "\n\nAI Orchestrator will process this task in the next development phase."
+        "Task started\n\n"+
+        "Task: "+task+
+        "\nAgent: "+agent+
+        "\n\nReal-time Credit Tracking activated."
+    );
+
+}
+
+
+/* ================= PAUSE ================= */
+
+function pauseTask(button){
+
+    button.innerText = "Resume";
+
+    button.onclick = function(){
+
+        button.innerText = "Pause";
+
+    };
+
+}
+
+
+/* ================= STOP ================= */
+
+function stopTask(button){
+
+    const card =
+        button.closest(".task-card");
+
+    card.style.opacity = ".45";
+
+    button.innerText = "Stopped";
+
+    button.disabled = true;
+
+}
+
+
+/* ================= BUY CREDIT ================= */
+
+function buyCredits(amount){
+
+    alert(
+        "Payment system will be connected later.\n\n"+
+        amount+
+        " Credits selected."
     );
 
 }
