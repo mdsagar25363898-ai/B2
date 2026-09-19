@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2 — AI Work Agent</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Inter,Arial,sans-serif;
+}
+
+body{
+    background:#070b14;
+    color:#fff;
+    min-height:100vh;
+}
+
+button,input{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* ---------- APP ---------- */
+
+.app{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+}
+
+.glow{
+    position:fixed;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.18;
+    pointer-events:none;
+}
+
+.glow.one{
+    background:#5b5cff;
+    top:-100px;
+    left:-100px;
+}
+
+.glow.two{
+    background:#00d9ff;
+    right:-100px;
+    bottom:-100px;
+}
+
+/* ---------- SCREENS ---------- */
+
+.screen{
+    display:none;
+    min-height:100vh;
+    padding:24px;
+}
+
+.screen.active{
+    display:flex;
+}
+
+/* ---------- SPLASH ---------- */
+
+#splash{
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+}
+
+.logo{
+    width:90px;
+    height:90px;
+    border-radius:26px;
+    background:linear-gradient(135deg,#6566ff,#20d9ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:42px;
+    font-weight:900;
+    box-shadow:0 20px 60px rgba(60,100,255,.35);
+}
+
+.brand{
+    margin-top:22px;
+    font-size:36px;
+    font-weight:800;
+}
+
+.tagline{
+    margin-top:8px;
+    color:#9da7ba;
+}
+
+.loader{
+    width:160px;
+    height:4px;
+    background:#1b2232;
+    border-radius:20px;
+    margin-top:35px;
+    overflow:hidden;
+}
+
+.loader span{
+    display:block;
+    width:50%;
+    height:100%;
+    background:#6c70ff;
+    animation:load 1.5s infinite;
+}
+
+@keyframes load{
+    from{transform:translateX(-100%)}
+    to{transform:translateX(220%)}
+}
+
+/* ---------- WELCOME ---------- */
+
+#welcome{
+    align-items:center;
+    justify-content:center;
+}
+
+.welcome-box{
+    width:100%;
+    max-width:480px;
+    text-align:center;
+}
+
+.welcome-box h1{
+    font-size:42px;
+    line-height:1.05;
+}
+
+.welcome-box p{
+    color:#9da7ba;
+    margin:18px 0 30px;
+    line-height:1.6;
+}
+
+.primary-btn,
+.secondary-btn{
+    width:100%;
+    padding:15px;
+    border-radius:14px;
+    border:0;
+    margin-top:12px;
+    font-weight:700;
+}
+
+.primary-btn{
+    background:linear-gradient(135deg,#6869ff,#22cfff);
+    color:#fff;
+}
+
+.secondary-btn{
+    background:#121927;
+    color:#fff;
+    border:1px solid #263149;
+}
+
+/* ---------- AUTH ---------- */
+
+.auth{
+    width:100%;
+    max-width:430px;
+    margin:auto;
+}
+
+.auth h1{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.auth p{
+    color:#929db1;
+    margin-bottom:28px;
+}
+
+.input{
+    width:100%;
+    padding:15px;
+    margin-bottom:13px;
+    background:#101725;
+    border:1px solid #253047;
+    border-radius:13px;
+    color:white;
+    outline:none;
+}
+
+.input:focus{
+    border-color:#6869ff;
+}
+
+/* ---------- HOME ---------- */
+
+#home{
+    display:none;
+    padding:0;
+}
+
+#home.active{
+    display:block;
+}
+
+.home-wrap{
+    width:100%;
+    max-width:1250px;
+    margin:auto;
+    padding:22px;
+}
+
+/* header */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:28px;
+}
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.small-logo{
+    width:45px;
+    height:45px;
+    border-radius:13px;
+    background:linear-gradient(135deg,#6566ff,#20d9ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+    font-size:21px;
+}
+
+.header-title{
+    font-size:20px;
+    font-weight:800;
+}
+
+.header-sub{
+    color:#77839a;
+    font-size:12px;
+}
+
+.avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#192235;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#aeb9cc;
+}
+
+/* command */
+
+.command{
+    background:linear-gradient(145deg,#111a2a,#0d1421);
+    border:1px solid #202c43;
+    border-radius:22px;
+    padding:25px;
+    margin-bottom:20px;
+}
+
+.command h2{
+    font-size:22px;
+}
+
+.command p{
+    color:#7e8ba2;
+    margin:8px 0 18px;
+}
+
+.command-input{
+    display:flex;
+    gap:10px;
+}
+
+.command-input input{
+    flex:1;
+    padding:16px;
+    border-radius:14px;
+    border:1px solid #29354d;
+    background:#080e19;
+    color:#fff;
+    outline:none;
+}
+
+.command-input button{
+    width:55px;
+    border:0;
+    border-radius:14px;
+    background:#6668ff;
+    color:#fff;
+    font-size:20px;
+}
+
+/* stats */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-bottom:22px;
+}
+
+.card{
+    background:#101725;
+    border:1px solid #202b40;
+    border-radius:18px;
+    padding:19px;
+}
+
+.card-label{
+    color:#7f8ba0;
+    font-size:13px;
+}
+
+.card-value{
+    font-size:25px;
+    font-weight:800;
+    margin-top:8px;
+}
+
+.card-small{
+    color:#6e7b92;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* quick actions */
+
+.section-title{
+    font-size:18px;
+    margin-bottom:13px;
+}
+
+.actions{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.action{
+    background:#101725;
+    border:1px solid #202b40;
+    border-radius:17px;
+    padding:20px;
+    min-height:120px;
+    transition:.2s;
+}
+
+.action:hover{
+    transform:translateY(-3px);
+    border-color:#555cff;
+}
+
+.action-icon{
+    font-size:27px;
+}
+
+.action-title{
+    margin-top:12px;
+    font-weight:700;
+}
+
+.action-sub{
+    color:#707c91;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* bottom */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:min(700px,calc(100% - 25px));
+    background:rgba(13,19,31,.94);
+    border:1px solid #263149;
+    backdrop-filter:blur(18px);
+    border-radius:20px 20px 0 0;
+    display:flex;
+    justify-content:space-around;
+    padding:12px;
+}
+
+.nav-item{
+    color:#68758c;
+    text-align:center;
+    font-size:11px;
+}
+
+.nav-item span{
+    display:block;
+    font-size:20px;
+    margin-bottom:3px;
+}
+
+.nav-item.active{
+    color:#fff;
+}
+
+/* responsive */
+
+@media(max-width:800px){
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .actions{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:500px){
+    .welcome-box h1{
+        font-size:34px;
+    }
+
+    .home-wrap{
+        padding:16px;
+        padding-bottom:100px;
+    }
+
+    .command-input{
+        flex-direction:column;
+    }
+
+    .command-input button{
+        width:100%;
+    }
+
+    .header{
+        margin-bottom:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="glow one"></div>
+<div class="glow two"></div>
+
+<!-- ================= SPLASH ================= -->
+
+<section id="splash" class="screen active">
+
+    <div class="logo">B2</div>
+
+    <div class="brand">B2</div>
+
+    <div class="tagline">
+        AI Work Agent Platform
+    </div>
+
+    <div class="loader">
+        <span></span>
+    </div>
+
+</section>
+
+
+<!-- ================= WELCOME ================= -->
+
+<section id="welcome" class="screen">
+
+    <div class="welcome-box">
+
+        <div class="logo" style="margin:auto">B2</div>
+
+        <h1 style="margin-top:25px">
+            Your AI Workforce
+        </h1>
+
+        <p>
+            Tell B2 what you need.
+            B2 can plan, coordinate and execute
+            authorized work through specialized AI agents.
+        </p>
+
+        <button class="primary-btn"
+                onclick="showScreen('login')">
+            Log In
+        </button>
+
+        <button class="secondary-btn"
+                onclick="showScreen('signup')">
+            Create Account
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LOGIN ================= -->
+
+<section id="login" class="screen">
+
+    <div class="auth">
+
+        <div class="logo"
+             style="width:65px;height:65px;font-size:28px">
+            B2
+        </div>
+
+        <h1 style="margin-top:25px">
+            Welcome back
+        </h1>
+
+        <p>
+            Log in to continue working with B2.
+        </p>
+
+        <input
+            class="input"
+            type="email"
+            placeholder="Email address"
+        >
+
+        <input
+            class="input"
+            type="password"
+            placeholder="Password"
+        >
+
+        <button
+            class="primary-btn"
+            onclick="loginDemo()">
+            Log In
+        </button>
+
+        <button
+            class="secondary-btn"
+            onclick="showScreen('signup')">
+            Create a new account
+        </button>
+
+        <button
+            class="secondary-btn"
+            onclick="showScreen('welcome')">
+            Back
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SIGN UP ================= -->
+
+<section id="signup" class="screen">
+
+    <div class="auth">
+
+        <div class="logo"
+             style="width:65px;height:65px;font-size:28px">
+            B2
+        </div>
+
+        <h1 style="margin-top:25px">
+            Create your B2 account
+        </h1>
+
+        <p>
+            Start building your AI workforce.
+        </p>
+
+        <input
+            class="input"
+            type="text"
+            placeholder="Full name"
+        >
+
+        <input
+            class="input"
+            type="email"
+            placeholder="Email address"
+        >
+
+        <input
+            class="input"
+            type="password"
+            placeholder="Create password"
+        >
+
+        <button
+            class="primary-btn"
+            onclick="loginDemo()">
+            Create Account
+        </button>
+
+        <button
+            class="secondary-btn"
+            onclick="showScreen('login')">
+            Already have an account
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="screen">
+
+<div class="home-wrap">
+
+    <header class="header">
+
+        <div class="header-left">
+
+            <div class="small-logo">B2</div>
+
+            <div>
+                <div class="header-title">
+                    B2
+                </div>
+
+                <div class="header-sub">
+                    AI Work Agent
+                </div>
+            </div>
+
+        </div>
+
+        <div class="avatar">
+            👤
+        </div>
+
+    </header>
+
+
+    <!-- COMMAND -->
+
+    <div class="command">
+
+        <h2>
+            What can B2 do for you?
+        </h2>
+
+        <p>
+            Describe the work you want B2 to handle.
+        </p>
+
+        <div class="command-input">
+
+            <input
+                id="commandInput"
+                type="text"
+                placeholder="Tell B2 what you want done..."
+            >
+
+            <button onclick="startCommand()">
+                ➤
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+        <div class="card">
+
+            <div class="card-label">
+                Credits
+            </div>
+
+            <div class="card-value">
+                12,500
+            </div>
+
+            <div class="card-small">
+                ≈ $125.00
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-label">
+                Subscription
+            </div>
+
+            <div class="card-value">
+                $5
+            </div>
+
+            <div class="card-small">
+                Active · Monthly
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-label">
+                Active Tasks
+            </div>
+
+            <div class="card-value">
+                3
+            </div>
+
+            <div class="card-small">
+                Running now
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-label">
+                Security
+            </div>
+
+            <div class="card-value">
+                ● Protected
+            </div>
+
+            <div class="card-small">
+                No critical alerts
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <div class="section-title">
+        Quick Actions
+    </div>
+
+    <div class="actions">
+
+        <div class="action"
+             onclick="quickCommand('Build an app')">
+
+            <div class="action-icon">💻</div>
+
+            <div class="action-title">
+                Build App
+            </div>
+
+            <div class="action-sub">
+                Create software
+            </div>
+
+        </div>
+
+
+        <div class="action"
+             onclick="quickCommand('Build a game')">
+
+            <div class="action-icon">🎮</div>
+
+            <div class="action-title">
+                Build Game
+            </div>
+
+            <div class="action-sub">
+                Game development
+            </div>
+
+        </div>
+
+
+        <div class="action"
+             onclick="quickCommand('Run a security check')">
+
+            <div class="action-icon">🛡️</div>
+
+            <div class="action-title">
+                Security
+            </div>
+
+            <div class="action-sub">
+                Check your systems
+            </div>
+
+        </div>
+
+
+        <div class="action"
+             onclick="quickCommand('Analyze my data')">
+
+            <div class="action-icon">📊</div>
+
+            <div class="action-title">
+                Data
+            </div>
+
+            <div class="action-sub">
+                Analyze data
+            </div>
+
+        </div>
+
+
+        <div class="action"
+             onclick="quickCommand('Design UI/UX')">
+
+            <div class="action-icon">🎨</div>
+
+            <div class="action-title">
+                UI / UX
+            </div>
+
+            <div class="action-sub">
+                Design interfaces
+            </div>
+
+        </div>
+
+
+        <div class="action"
+             onclick="quickCommand('Create a 3D asset')">
+
+            <div class="action-icon">🧊</div>
+
+            <div class="action-title">
+                3D Assets
+            </div>
+
+            <div class="action-sub">
+                Create 3D content
+            </div>
+
+        </div>
+
+
+        <div class="action"
+             onclick="quickCommand('Create a video')">
+
+            <div class="action-icon">🎬</div>
+
+            <div class="action-title">
+                Video
+            </div>
+
+            <div class="action-sub">
+                Create videos
+            </div>
+
+        </div>
+
+
+        <div class="action"
+             onclick="quickCommand('Optimize my app store listing')">
+
+            <div class="action-icon">📱</div>
+
+            <div class="action-title">
+                ASO
+            </div>
+
+            <div class="action-sub">
+                Store optimization
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+    <div class="nav-item active">
+        <span>⌂</span>
+        Home
+    </div>
+
+    <div class="nav-item">
+        <span>🤖</span>
+        Agents
+    </div>
+
+    <div class="nav-item">
+        <span>📁</span>
+        Projects
+    </div>
+
+    <div class="nav-item">
+        <span>⚡</span>
+        Tasks
+    </div>
+
+    <div class="nav-item">
+        <span>💳</span>
+        Wallet
+    </div>
+
+</nav>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* ---------- SCREEN CONTROL ---------- */
+
+function showScreen(id){
+
+    document.querySelectorAll(".screen")
+        .forEach(screen=>{
+            screen.classList.remove("active");
+        });
+
+    document.getElementById(id)
+        .classList.add("active");
+}
+
+
+/* ---------- SPLASH ---------- */
+
+setTimeout(()=>{
+    showScreen("welcome");
+},1800);
+
+
+/* ---------- DEMO LOGIN ---------- */
+
+function loginDemo(){
+
+    showScreen("home");
+
+}
+
+
+/* ---------- COMMAND ---------- */
+
+function quickCommand(text){
+
+    document.getElementById("commandInput")
+        .value = text;
+
+    document.getElementById("commandInput")
+        .focus();
+
+}
+
+
+function startCommand(){
+
+    const input =
+        document.getElementById("commandInput");
+
+    const command =
+        input.value.trim();
+
+    if(!command){
+
+        input.focus();
+
+        return;
+    }
+
+    alert(
+        "B2 received your command:\n\n"
+        + command
+        + "\n\nAI Orchestrator will process this task in the next development phase."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
