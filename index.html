@@ -1572,80 +1572,141 @@ showToast("B2 task started.");
 
 /* =========================
    LIVE TASK
+   COST BASED SIMULATION
 ========================= */
+
+let taskEstimatedCredits = 500;
+let taskConsumedCredits = 0;
+let taskLastProgress = 0;
 
 function startLiveTask(name){
 
-taskRunning = true;
+    taskRunning = true;
 
-taskUsed = 0;
+    taskUsed = 0;
+    taskCost = 0;
+    progress = 0;
 
-taskCost = 0;
+    taskConsumedCredits = 0;
 
-progress = 0;
+    /*
+      Demo task estimated cost.
 
-document
-.getElementById("taskTitle")
-.innerText = name;
+      500 Credits = $5.00
+    */
 
-clearInterval(taskTimer);
+    taskEstimatedCredits = 500;
 
-taskTimer =
-setInterval(()=>{
+    taskLastProgress = 0;
 
-if(!taskRunning)return;
+    document
+        .getElementById("taskTitle")
+        .innerText = name;
 
-if(credits <= 0){
+    clearInterval(taskTimer);
 
-credits = 0;
+    /*
+      প্রতি সেকেন্ডে Credit কাটবে না।
 
-stopTask();
+      Task progress পরিবর্তনের সময়
+      প্রয়োজন অনুযায়ী usage হিসাব হবে।
+    */
 
-showToast(
-"Credits exhausted. Task stopped."
-);
+    taskTimer = setInterval(()=>{
 
-return;
+        if(!taskRunning) return;
 
+        if(credits <= 0){
+
+            credits = 0;
+
+            taskRunning = false;
+
+            clearInterval(taskTimer);
+
+            updateUI();
+
+            showToast(
+                "Credits exhausted. Task stopped."
+            );
+
+            return;
+        }
+
+        /*
+          Progress ধীরে বাড়বে।
+
+          এটি শুধু UI simulation।
+          বাস্তব billing-এ provider usage
+          থেকে actual cost আসবে।
+        */
+
+        progress += 1;
+
+        if(progress > 100){
+            progress = 100;
+        }
+
+        /*
+          Estimated task cost থেকে
+          বর্তমান progress-এর ব্যবহার হিসাব।
+          
+          Example:
+          500 Credits task
+          20% complete = 100 Credits used
+        */
+
+        const expectedUsed =
+            Math.floor(
+                taskEstimatedCredits *
+                (progress / 100)
+            );
+
+        /*
+          শুধু নতুন ব্যবহারটুকু deduct করব।
+        */
+
+        const newUsage =
+            expectedUsed -
+            taskConsumedCredits;
+
+        if(newUsage > 0){
+
+            const actualUsage =
+                Math.min(
+                    newUsage,
+                    credits
+                );
+
+            credits -= actualUsage;
+
+            taskUsed += actualUsage;
+
+            taskConsumedCredits += actualUsage;
+
+            taskCost =
+                taskUsed * 0.01;
+        }
+
+        updateUI();
+
+        /*
+          Task শেষ
+        */
+
+        if(progress >= 100){
+
+            clearInterval(taskTimer);
+
+            taskRunning = false;
+
+            showToast(
+                "Task completed successfully."
+            );
+        }
+
+    },1000);
 }
-
-/*
-1 tick = 10 Credits
-*/
-
-const usage = 10;
-
-credits -= usage;
-
-taskUsed += usage;
-
-taskCost =
-taskUsed * 0.01;
-
-progress += 1;
-
-if(progress > 100)
-progress = 100;
-
-updateUI();
-
-if(progress >= 100){
-
-clearInterval(taskTimer);
-
-taskRunning = false;
-
-showToast(
-"Task completed successfully."
-);
-
-}
-
-},1000);
-
-}
-
-
 /* =========================
    UPDATE UI
 ========================= */
