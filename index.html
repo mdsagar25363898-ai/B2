@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>B2 — AI Work Agent</title>
+<title>B2 - AI Work Agent</title>
 
 <style>
 *{
@@ -19,821 +19,475 @@ body{
     min-height:100vh;
 }
 
-button,input{
-    font:inherit;
-}
-
 button{
+    border:0;
     cursor:pointer;
 }
 
 .app{
-    min-height:100vh;
-    position:relative;
-    overflow:hidden;
-}
-
-.glow{
-    position:fixed;
-    width:300px;
-    height:300px;
-    border-radius:50%;
-    filter:blur(100px);
-    opacity:.15;
-    pointer-events:none;
-}
-
-.glow.one{
-    background:#555cff;
-    top:-100px;
-    left:-100px;
-}
-
-.glow.two{
-    background:#00d9ff;
-    right:-100px;
-    bottom:-100px;
-}
-
-.screen{
-    display:none;
-    min-height:100vh;
-    padding:20px;
-}
-
-.screen.active{
-    display:block;
-}
-
-
-/* ================= SPLASH ================= */
-
-#splash{
-    display:none;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    text-align:center;
-}
-
-#splash.active{
-    display:flex;
-}
-
-.logo{
-    width:90px;
-    height:90px;
-    border-radius:25px;
-    background:linear-gradient(135deg,#6467ff,#20d9ff);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:40px;
-    font-weight:900;
-    box-shadow:0 20px 60px rgba(70,100,255,.35);
-}
-
-.brand{
-    font-size:36px;
-    font-weight:900;
-    margin-top:20px;
-}
-
-.tagline{
-    color:#8995aa;
-    margin-top:7px;
-}
-
-.loader{
-    width:160px;
-    height:4px;
-    background:#1b2435;
-    border-radius:20px;
-    overflow:hidden;
-    margin-top:30px;
-}
-
-.loader span{
-    display:block;
-    width:50%;
-    height:100%;
-    background:#686bff;
-    animation:load 1.5s infinite;
-}
-
-@keyframes load{
-    from{transform:translateX(-100%)}
-    to{transform:translateX(220%)}
-}
-
-
-/* ================= WELCOME ================= */
-
-#welcome{
-    display:none;
-    align-items:center;
-    justify-content:center;
-}
-
-#welcome.active{
-    display:flex;
-}
-
-.welcome-box{
-    width:100%;
     max-width:480px;
-    text-align:center;
-}
-
-.welcome-box h1{
-    font-size:40px;
-    margin-top:25px;
-}
-
-.welcome-box p{
-    color:#909bae;
-    line-height:1.6;
-    margin:15px 0 28px;
-}
-
-.primary-btn,
-.secondary-btn{
-    width:100%;
-    padding:15px;
-    border-radius:14px;
-    margin-top:12px;
-    font-weight:700;
-}
-
-.primary-btn{
-    background:linear-gradient(135deg,#686aff,#20d0ff);
-    color:#fff;
-    border:0;
-}
-
-.secondary-btn{
-    background:#111927;
-    color:#fff;
-    border:1px solid #28344a;
-}
-
-
-/* ================= AUTH ================= */
-
-#login,
-#signup{
-    display:none;
-    align-items:center;
-    justify-content:center;
-}
-
-#login.active,
-#signup.active{
-    display:flex;
-}
-
-.auth{
-    width:100%;
-    max-width:430px;
-}
-
-.auth h1{
-    font-size:32px;
-    margin-top:20px;
-}
-
-.auth p{
-    color:#8995a9;
-    margin:8px 0 25px;
-}
-
-.input{
-    width:100%;
-    padding:15px;
-    margin-bottom:12px;
-    border-radius:13px;
-    border:1px solid #263249;
-    background:#101724;
-    color:white;
-    outline:none;
-}
-
-.input:focus{
-    border-color:#686bff;
-}
-
-
-/* ================= MAIN APP ================= */
-
-#home{
-    display:none;
-    padding:0;
-}
-
-#home.active{
-    display:block;
-}
-
-.app-wrap{
-    width:100%;
-    max-width:1200px;
     margin:auto;
-    padding:20px;
-    padding-bottom:110px;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at top,#18233d 0,#070b14 45%);
+    padding-bottom:90px;
 }
-
 
 /* HEADER */
 
 .header{
+    padding:22px 18px 12px;
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    margin-bottom:22px;
-}
-
-.header-left{
-    display:flex;
     align-items:center;
-    gap:11px;
 }
 
-.small-logo{
-    width:45px;
-    height:45px;
-    border-radius:13px;
-    background:linear-gradient(135deg,#6467ff,#20d9ff);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:900;
-    font-size:20px;
-}
-
-.header-title{
-    font-size:20px;
+.logo{
+    font-size:28px;
     font-weight:800;
 }
 
-.header-sub{
-    color:#78849a;
-    font-size:12px;
+.logo span{
+    color:#5b8cff;
 }
 
-.avatar{
-    width:43px;
-    height:43px;
-    border-radius:50%;
-    background:#172134;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.status{
+    padding:7px 11px;
+    background:#102719;
+    border:1px solid #245d36;
+    color:#65e58b;
+    border-radius:20px;
+    font-size:11px;
 }
 
-
-/* PAGE */
+/* PAGES */
 
 .page{
     display:none;
+    padding:15px;
 }
 
 .page.active{
     display:block;
 }
 
+/* CARDS */
+
+.card{
+    background:rgba(20,27,43,.88);
+    border:1px solid #26324a;
+    border-radius:18px;
+    padding:17px;
+    margin-bottom:14px;
+    box-shadow:0 10px 35px rgba(0,0,0,.2);
+}
+
+.card-title{
+    font-size:14px;
+    color:#8f9bb3;
+    margin-bottom:8px;
+}
+
+.big{
+    font-size:28px;
+    font-weight:800;
+}
+
+.muted{
+    color:#8f9bb3;
+    font-size:12px;
+}
 
 /* COMMAND */
 
+.command{
+    background:linear-gradient(135deg,#172441,#101827);
+    border:1px solid #30466f;
+    padding:18px;
+    border-radius:20px;
+    margin-bottom:15px;
+}
+
+.command h2{
+    font-size:18px;
+    margin-bottom:10px;
+}
+
 .command-box{
-    background:linear-gradient(145deg,#111a29,#0c1420);
-    border:1px solid #222e44;
-    border-radius:22px;
-    padding:23px;
-    margin-bottom:20px;
-}
-
-.command-box h2{
-    font-size:21px;
-}
-
-.command-box p{
-    color:#7e8ba0;
-    margin:7px 0 17px;
-}
-
-.command-row{
     display:flex;
-    gap:10px;
+    gap:8px;
 }
 
-.command-row input{
+.command-box input{
     flex:1;
-    padding:15px;
-    border-radius:14px;
-    border:1px solid #28354d;
-    background:#080e18;
-    color:white;
+    background:#090e18;
+    border:1px solid #2d3a54;
+    color:#fff;
+    padding:13px;
+    border-radius:12px;
     outline:none;
 }
 
-.command-row button{
-    width:55px;
-    border:0;
-    border-radius:14px;
-    background:#6669ff;
+.primary{
+    background:#4f7cff;
     color:#fff;
-    font-size:20px;
+    padding:12px 16px;
+    border-radius:12px;
+    font-weight:bold;
 }
 
+.secondary{
+    background:#202b40;
+    color:#fff;
+    padding:11px 14px;
+    border-radius:11px;
+}
 
 /* STATS */
 
 .stats{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:13px;
-    margin-bottom:22px;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
 
-.card{
-    background:#101724;
-    border:1px solid #202c41;
-    border-radius:17px;
-    padding:18px;
+.stat{
+    background:#111827;
+    border:1px solid #26324a;
+    border-radius:15px;
+    padding:15px;
 }
 
-.card-label{
-    color:#78859a;
-    font-size:12px;
+.stat strong{
+    display:block;
+    font-size:21px;
+    margin-top:5px;
 }
 
-.card-value{
-    font-size:24px;
-    font-weight:800;
-    margin-top:7px;
-}
+/* QUICK ACTIONS */
 
-.card-small{
-    color:#68758a;
-    font-size:12px;
-    margin-top:4px;
-}
-
-
-/* SECTION */
-
-.section-title{
-    font-size:18px;
-    font-weight:800;
-    margin-bottom:13px;
-}
-
-
-/* ACTIONS */
-
-.actions{
+.quick-grid{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.quick{
+    background:#111827;
+    border:1px solid #26324a;
+    border-radius:15px;
+    padding:15px;
+    text-align:left;
+    color:#fff;
+}
+
+.quick .icon{
+    font-size:25px;
+    margin-bottom:8px;
+}
+
+.quick b{
+    display:block;
+    margin-bottom:4px;
+}
+
+/* AGENTS */
+
+.agent{
+    display:flex;
+    align-items:center;
     gap:12px;
-}
-
-.action{
-    background:#101724;
-    border:1px solid #202c41;
-    border-radius:17px;
-    padding:18px;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.action:hover{
-    transform:translateY(-3px);
-    border-color:#6265ff;
-}
-
-.action-icon{
-    font-size:27px;
-}
-
-.action-title{
-    font-weight:700;
-    margin-top:10px;
-}
-
-.action-sub{
-    color:#707d92;
-    font-size:12px;
-    margin-top:4px;
-}
-
-
-/* ================= AGENTS ================= */
-
-.agent-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:13px;
-}
-
-.agent-card{
-    background:#101724;
-    border:1px solid #222e43;
-    border-radius:18px;
-    padding:18px;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.agent-card:hover{
-    border-color:#6669ff;
-    transform:translateY(-3px);
+    background:#111827;
+    border:1px solid #26324a;
+    padding:14px;
+    border-radius:15px;
+    margin-bottom:10px;
 }
 
 .agent-icon{
-    font-size:30px;
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    background:#1d2b48;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
 }
 
-.agent-name{
-    font-weight:800;
-    margin-top:12px;
+.agent-info{
+    flex:1;
 }
 
-.agent-status{
-    color:#63d89b;
-    font-size:12px;
-    margin-top:6px;
+.agent-info b{
+    display:block;
+    margin-bottom:4px;
 }
 
-.agent-description{
-    color:#77849a;
-    font-size:12px;
-    line-height:1.5;
-    margin-top:9px;
+.agent-info small{
+    color:#8f9bb3;
 }
 
+/* PROJECT */
 
-/* ================= PROJECT ================= */
-
-.project-list{
-    display:grid;
-    gap:12px;
+.project{
+    background:#111827;
+    border:1px solid #26324a;
+    border-radius:17px;
+    padding:15px;
+    margin-bottom:12px;
 }
 
-.project-card{
-    background:#101724;
-    border:1px solid #222e43;
-    border-radius:18px;
-    padding:18px;
-}
-
-.project-top{
+.project-head{
     display:flex;
     justify-content:space-between;
 }
 
-.project-name{
-    font-weight:800;
-}
-
-.project-status{
-    color:#63d89b;
-    font-size:12px;
+.badge{
+    padding:5px 8px;
+    border-radius:8px;
+    font-size:10px;
+    background:#172d51;
+    color:#75a0ff;
 }
 
 .progress{
     height:7px;
-    background:#1b2638;
-    border-radius:20px;
+    background:#202a3b;
+    border-radius:10px;
     overflow:hidden;
-    margin-top:15px;
+    margin:13px 0 7px;
 }
 
-.progress span{
-    display:block;
+.progress div{
     height:100%;
-    width:68%;
-    background:linear-gradient(90deg,#686aff,#20d9ff);
+    background:#5b8cff;
 }
 
-.project-meta{
+/* TASK */
+
+.task{
+    background:#111827;
+    border:1px solid #26324a;
+    border-radius:17px;
+    padding:16px;
+    margin-bottom:12px;
+}
+
+.task-head{
     display:flex;
     justify-content:space-between;
-    color:#748197;
-    font-size:12px;
-    margin-top:8px;
+    margin-bottom:10px;
 }
 
-
-/* ================= TASK CENTER ================= */
-
-.task-card{
-    background:#101724;
-    border:1px solid #222e43;
-    border-radius:19px;
-    padding:20px;
-    margin-bottom:13px;
-}
-
-.task-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.task-title{
-    font-weight:800;
-    font-size:17px;
-}
-
-.running{
-    color:#62d89b;
-    font-size:12px;
-}
-
-.task-agent{
-    color:#7e8ba0;
-    font-size:12px;
-    margin-top:5px;
-}
-
-.task-progress{
-    height:9px;
-    background:#1b2638;
-    border-radius:20px;
-    overflow:hidden;
-    margin:17px 0;
-}
-
-.task-progress span{
-    display:block;
-    width:64%;
-    height:100%;
-    background:linear-gradient(90deg,#676aff,#20d9ff);
+.live{
+    color:#5ff28a;
+    font-size:11px;
 }
 
 .cost-grid{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:9px;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-top:12px;
 }
 
 .cost-box{
-    background:#0a101a;
-    border:1px solid #1e2a3e;
-    border-radius:12px;
-    padding:12px;
+    background:#0b111d;
+    border-radius:10px;
+    padding:10px;
 }
 
-.cost-label{
-    color:#69768b;
+.cost-box span{
+    display:block;
+    color:#7e8ba4;
     font-size:10px;
+    margin-bottom:5px;
 }
 
-.cost-value{
-    font-weight:800;
-    margin-top:5px;
+.cost-box b{
+    font-size:14px;
 }
 
-.task-buttons{
-    display:flex;
-    gap:10px;
-    margin-top:17px;
-}
+/* AGENT DETAIL */
 
-.task-btn{
-    flex:1;
-    padding:12px;
-    border-radius:11px;
-    border:1px solid #29364d;
-    background:#141e2e;
-    color:#fff;
-}
-
-.task-btn.stop{
-    background:#301b24;
-    border-color:#62303e;
-}
-
-
-/* ================= WALLET ================= */
-
-.wallet-main{
-    background:linear-gradient(135deg,#171c46,#10283a);
-    border:1px solid #313b6c;
+.detail-icon{
+    width:75px;
+    height:75px;
     border-radius:22px;
-    padding:25px;
-    margin-bottom:18px;
+    background:#172849;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:38px;
+    margin-bottom:15px;
 }
 
-.wallet-label{
-    color:#9aa6c0;
+.feature{
+    padding:11px 0;
+    border-bottom:1px solid #202a3b;
     font-size:13px;
 }
 
-.wallet-value{
-    font-size:40px;
-    font-weight:900;
-    margin-top:8px;
+.feature:last-child{
+    border-bottom:0;
 }
 
-.wallet-usd{
-    color:#7fdcff;
-    margin-top:4px;
+/* FORMS */
+
+.form-group{
+    margin-bottom:13px;
 }
 
-.package-grid{
+.form-group label{
+    display:block;
+    font-size:12px;
+    color:#8f9bb3;
+    margin-bottom:6px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+    padding:13px;
+    background:#0b111d;
+    color:#fff;
+    border:1px solid #29364e;
+    border-radius:11px;
+    outline:none;
+}
+
+.form-group textarea{
+    min-height:100px;
+    resize:none;
+}
+
+/* WALLET */
+
+.wallet-balance{
+    text-align:center;
+    padding:25px 10px;
+}
+
+.wallet-balance .credits{
+    font-size:38px;
+    font-weight:800;
+    margin:10px 0;
+}
+
+.packages{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    margin-top:15px;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
 
 .package{
-    background:#101724;
-    border:1px solid #243149;
-    border-radius:16px;
-    padding:18px;
-    cursor:pointer;
-}
-
-.package:hover{
-    border-color:#6669ff;
-}
-
-.package-price{
-    font-size:20px;
-    font-weight:800;
-}
-
-.package-credit{
-    color:#7c899f;
-    margin-top:6px;
-    font-size:12px;
-}
-
-
-/* ================= SUBSCRIPTION ================= */
-
-.subscription-card{
-    background:linear-gradient(135deg,#161b39,#101c2b);
-    border:1px solid #30385e;
-    border-radius:20px;
-    padding:23px;
-}
-
-.subscription-price{
-    font-size:35px;
-    font-weight:900;
-    margin-top:10px;
-}
-
-.subscription-status{
-    color:#63d89b;
-    margin-top:8px;
-}
-
-.subscription-info{
-    color:#78859b;
-    font-size:13px;
-    line-height:1.7;
-    margin-top:14px;
-}
-
-
-/* ================= LIVE TASK ================= */
-
-.live-task{
-    background:#0e1623;
-    border:1px solid #29364d;
-    border-radius:20px;
-    padding:20px;
-}
-
-.live-top{
-    display:flex;
-    justify-content:space-between;
-}
-
-.live-badge{
-    background:#13372b;
-    color:#62d89b;
-    padding:6px 10px;
-    border-radius:20px;
-    font-size:11px;
-}
-
-.live-title{
-    font-size:21px;
-    font-weight:800;
-    margin-top:10px;
-}
-
-.live-cost{
-    margin-top:20px;
+    background:#111827;
+    border:1px solid #26324a;
     padding:16px;
-    background:#080e18;
     border-radius:15px;
 }
 
-.live-cost-title{
-    color:#79869b;
-    font-size:12px;
+.package b{
+    display:block;
+    font-size:19px;
+    margin-bottom:5px;
 }
 
-.live-cost-value{
-    font-size:30px;
-    font-weight:900;
-    margin-top:5px;
-}
-
-
-/* ================= BOTTOM NAV ================= */
+/* NAV */
 
 .bottom-nav{
     position:fixed;
-    left:50%;
     bottom:0;
+    left:50%;
     transform:translateX(-50%);
-    width:min(720px,calc(100% - 20px));
-    background:rgba(12,18,29,.96);
-    border:1px solid #27344a;
-    backdrop-filter:blur(18px);
-    border-radius:20px 20px 0 0;
-    display:flex;
-    justify-content:space-around;
-    padding:10px;
-    z-index:20;
+    width:100%;
+    max-width:480px;
+    height:72px;
+    background:rgba(8,12,21,.96);
+    border-top:1px solid #253047;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    z-index:100;
 }
 
-.nav-item{
-    color:#69768c;
-    text-align:center;
+.nav-btn{
+    background:none;
+    color:#73809a;
     font-size:10px;
-    cursor:pointer;
 }
 
-.nav-item span{
-    display:block;
+.nav-btn div{
     font-size:20px;
     margin-bottom:3px;
 }
 
-.nav-item.active{
+.nav-btn.active{
+    color:#6f96ff;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    z-index:200;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:480px;
+    background:#101827;
+    border:1px solid #293750;
+    border-radius:25px 25px 0 0;
+    padding:20px;
+    max-height:90vh;
+    overflow:auto;
+}
+
+.close{
+    float:right;
+    background:#202b40;
     color:#fff;
+    width:32px;
+    height:32px;
+    border-radius:50%;
 }
 
+/* ALERT */
 
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:800px){
-
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .actions{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .agent-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .cost-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
+.toast{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%) translateY(-100px);
+    background:#18243a;
+    border:1px solid #3a4c70;
+    padding:13px 17px;
+    border-radius:12px;
+    z-index:300;
+    transition:.3s;
+    font-size:12px;
 }
 
-@media(max-width:500px){
+.toast.show{
+    transform:translateX(-50%) translateY(0);
+}
 
-    .app-wrap{
-        padding:15px;
-        padding-bottom:100px;
-    }
+/* MOBILE */
 
-    .actions{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .agent-grid{
+@media(max-width:350px){
+    .packages{
         grid-template-columns:1fr;
-    }
-
-    .package-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .command-row{
-        flex-direction:column;
-    }
-
-    .command-row button{
-        width:100%;
-        padding:13px;
-    }
-
-    .wallet-value{
-        font-size:32px;
     }
 }
 </style>
@@ -843,1061 +497,1328 @@ button{
 
 <div class="app">
 
-<div class="glow one"></div>
-<div class="glow two"></div>
+<!-- HEADER -->
 
+<div class="header">
+    <div class="logo">B<span>2</span></div>
+    <div class="status">● SYSTEM ONLINE</div>
+</div>
 
-<!-- ================= SPLASH ================= -->
+<!-- HOME -->
 
-<section id="splash" class="screen active">
+<section id="home" class="page active">
 
-    <div class="logo">B2</div>
-
-    <div class="brand">B2</div>
-
-    <div class="tagline">
-        AI Work Agent Platform
-    </div>
-
-    <div class="loader">
-        <span></span>
-    </div>
-
-</section>
-
-
-<!-- ================= WELCOME ================= -->
-
-<section id="welcome" class="screen">
-
-    <div class="welcome-box">
-
-        <div class="logo" style="margin:auto">
-            B2
-        </div>
-
-        <h1>
-            Your AI Workforce
-        </h1>
-
-        <p>
-            Tell B2 what you need.
-            B2 coordinates specialized AI agents
-            to handle authorized work.
-        </p>
-
-        <button class="primary-btn"
-                onclick="showScreen('login')">
-            Log In
-        </button>
-
-        <button class="secondary-btn"
-                onclick="showScreen('signup')">
-            Create Account
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- ================= LOGIN ================= -->
-
-<section id="login" class="screen">
-
-    <div class="auth">
-
-        <div class="logo"
-             style="width:65px;height:65px;font-size:28px">
-            B2
-        </div>
-
-        <h1>Welcome back</h1>
-
-        <p>
-            Log in to continue with B2.
-        </p>
-
-        <input class="input"
-               type="email"
-               placeholder="Email address">
-
-        <input class="input"
-               type="password"
-               placeholder="Password">
-
-        <button class="primary-btn"
-                onclick="loginDemo()">
-            Log In
-        </button>
-
-        <button class="secondary-btn"
-                onclick="showScreen('signup')">
-            Create Account
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- ================= SIGNUP ================= -->
-
-<section id="signup" class="screen">
-
-    <div class="auth">
-
-        <div class="logo"
-             style="width:65px;height:65px;font-size:28px">
-            B2
-        </div>
-
-        <h1>Create your account</h1>
-
-        <p>
-            Start building your AI workforce.
-        </p>
-
-        <input class="input"
-               type="text"
-               placeholder="Full name">
-
-        <input class="input"
-               type="email"
-               placeholder="Email address">
-
-        <input class="input"
-               type="password"
-               placeholder="Create password">
-
-        <button class="primary-btn"
-                onclick="loginDemo()">
-            Create Account
-        </button>
-
-        <button class="secondary-btn"
-                onclick="showScreen('login')">
-            Already have an account
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- ================= MAIN APP ================= -->
-
-<section id="home" class="screen">
-
-<div class="app-wrap">
-
-<header class="header">
-
-    <div class="header-left">
-
-        <div class="small-logo">B2</div>
-
-        <div>
-            <div class="header-title">B2</div>
-            <div class="header-sub">
-                AI Work Agent
-            </div>
-        </div>
-
-    </div>
-
-    <div class="avatar">
-        👤
-    </div>
-
-</header>
-
-
-<!-- ================= HOME PAGE ================= -->
-
-<div id="page-home" class="page active">
+<div class="command">
+    <h2>What can B2 do for you?</h2>
 
     <div class="command-box">
-
-        <h2>
-            What can B2 do for you?
-        </h2>
-
-        <p>
-            Describe the work you want B2 to handle.
-        </p>
-
-        <div class="command-row">
-
-            <input id="commandInput"
-                   placeholder="Tell B2 what you want done...">
-
-            <button onclick="startCommand()">
-                ➤
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="stats">
-
-        <div class="card">
-
-            <div class="card-label">
-                Credits
-            </div>
-
-            <div class="card-value">
-                <span id="creditBalance">
-                    12,500
-                </span>
-            </div>
-
-            <div class="card-small">
-                ≈ $125.00
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-label">
-                Subscription
-            </div>
-
-            <div class="card-value">
-                $5
-            </div>
-
-            <div class="card-small">
-                Active · Monthly
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-label">
-                Active Tasks
-            </div>
-
-            <div class="card-value">
-                3
-            </div>
-
-            <div class="card-small">
-                Running now
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-label">
-                Security
-            </div>
-
-            <div class="card-value">
-                ● Protected
-            </div>
-
-            <div class="card-small">
-                No critical alerts
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="section-title">
-        Quick Actions
-    </div>
-
-    <div class="actions">
-
-        <div class="action"
-             onclick="startTask('Build App','Coding Agent')">
-            <div class="action-icon">💻</div>
-            <div class="action-title">Build App</div>
-            <div class="action-sub">
-                Create software
-            </div>
-        </div>
-
-        <div class="action"
-             onclick="startTask('Build Game','Game Agent')">
-            <div class="action-icon">🎮</div>
-            <div class="action-title">Build Game</div>
-            <div class="action-sub">
-                Game development
-            </div>
-        </div>
-
-        <div class="action"
-             onclick="startTask('Security Check','Security Agent')">
-            <div class="action-icon">🛡️</div>
-            <div class="action-title">Security</div>
-            <div class="action-sub">
-                Protect systems
-            </div>
-        </div>
-
-        <div class="action"
-             onclick="startTask('Data Analysis','Data Agent')">
-            <div class="action-icon">📊</div>
-            <div class="action-title">Data</div>
-            <div class="action-sub">
-                Analyze data
-            </div>
-        </div>
-
-        <div class="action"
-             onclick="startTask('UI/UX Design','UI/UX Agent')">
-            <div class="action-icon">🎨</div>
-            <div class="action-title">UI / UX</div>
-            <div class="action-sub">
-                Design interfaces
-            </div>
-        </div>
-
-        <div class="action"
-             onclick="startTask('3D Asset','3D Agent')">
-            <div class="action-icon">🧊</div>
-            <div class="action-title">3D Assets</div>
-            <div class="action-sub">
-                Create 3D content
-            </div>
-        </div>
-
-        <div class="action"
-             onclick="startTask('Video Creation','Video Agent')">
-            <div class="action-icon">🎬</div>
-            <div class="action-title">Video</div>
-            <div class="action-sub">
-                Create videos
-            </div>
-        </div>
-
-        <div class="action"
-             onclick="startTask('ASO Optimization','ASO Agent')">
-            <div class="action-icon">📱</div>
-            <div class="action-title">ASO</div>
-            <div class="action-sub">
-                Optimize store listing
-            </div>
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ================= AGENTS ================= -->
-
-<div id="page-agents" class="page">
-
-    <div class="section-title">
-        B2 Specialist Agents
-    </div>
-
-    <div class="agent-grid">
-
-        <div class="agent-card">
-            <div class="agent-icon">💻</div>
-            <div class="agent-name">
-                Coding Agent
-            </div>
-            <div class="agent-status">
-                ● Available
-            </div>
-            <div class="agent-description">
-                Builds software, APIs and application features.
-            </div>
-        </div>
-
-        <div class="agent-card">
-            <div class="agent-icon">🛡️</div>
-            <div class="agent-name">
-                Security Agent
-            </div>
-            <div class="agent-status">
-                ● Available
-            </div>
-            <div class="agent-description">
-                Monitors authorized systems and security events.
-            </div>
-        </div>
-
-        <div class="agent-card">
-            <div class="agent-icon">🎨</div>
-            <div class="agent-name">
-                UI/UX Agent
-            </div>
-            <div class="agent-status">
-                ● Available
-            </div>
-            <div class="agent-description">
-                Designs interfaces, flows and design systems.
-            </div>
-        </div>
-
-        <div class="agent-card">
-            <div class="agent-icon">🧪</div>
-            <div class="agent-name">
-                QA Agent
-            </div>
-            <div class="agent-status">
-                ● Available
-            </div>
-            <div class="agent-description">
-                Tests software and detects bugs.
-            </div>
-        </div>
-
-        <div class="agent-card">
-            <div class="agent-icon">🧊</div>
-            <div class="agent-name">
-                3D Asset Agent
-            </div>
-            <div class="agent-status">
-                ● Available
-            </div>
-            <div class="agent-description">
-                Creates and optimizes 3D game assets.
-            </div>
-        </div>
-
-        <div class="agent-card">
-            <div class="agent-icon">🎬</div>
-            <div class="agent-name">
-                Video Agent
-            </div>
-            <div class="agent-status">
-                ● Available
-            </div>
-            <div class="agent-description">
-                Creates scripts, videos, captions and thumbnails.
-            </div>
-        </div>
-
-        <div class="agent-card">
-            <div class="agent-icon">📱</div>
-            <div class="agent-name">
-                ASO Agent
-            </div>
-            <div class="agent-status">
-                ● Available
-            </div>
-            <div class="agent-description">
-                Optimizes app store listings and discoverability.
-            </div>
-        </div>
-
-        <div class="agent-card">
-            <div class="agent-icon">☁️</div>
-            <div class="agent-name">
-                DevOps Agent
-            </div>
-            <div class="agent-status">
-                ● Available
-            </div>
-            <div class="agent-description">
-                Monitors servers, deployments and infrastructure.
-            </div>
-        </div>
-
-        <div class="agent-card">
-            <div class="agent-icon">🗄️</div>
-            <div class="agent-name">
-                Data Agent
-            </div>
-            <div class="agent-status">
-                ● Available
-            </div>
-            <div class="agent-description">
-                Manages data pipelines and warehouse workflows.
-            </div>
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ================= PROJECTS ================= -->
-
-<div id="page-projects" class="page">
-
-    <div class="section-title">
-        Projects
-    </div>
-
-    <div class="project-list">
-
-        <div class="project-card">
-
-            <div class="project-top">
-
-                <div class="project-name">
-                    My New Game
-                </div>
-
-                <div class="project-status">
-                    Active
-                </div>
-
-            </div>
-
-            <div class="progress">
-                <span></span>
-            </div>
-
-            <div class="project-meta">
-
-                <span>
-                    Progress 68%
-                </span>
-
-                <span>
-                    4 Agents
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="project-card">
-
-            <div class="project-top">
-
-                <div class="project-name">
-                    Business App
-                </div>
-
-                <div class="project-status">
-                    Active
-                </div>
-
-            </div>
-
-            <div class="progress">
-                <span style="width:42%"></span>
-            </div>
-
-            <div class="project-meta">
-
-                <span>
-                    Progress 42%
-                </span>
-
-                <span>
-                    3 Agents
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ================= TASK CENTER ================= -->
-
-<div id="page-tasks" class="page">
-
-    <div class="section-title">
-        Active Tasks
-    </div>
-
-
-    <div class="task-card">
-
-        <div class="task-header">
-
-            <div>
-                <div class="task-title">
-                    Creating Game
-                </div>
-
-                <div class="task-agent">
-                    Coding Agent + QA Agent
-                </div>
-            </div>
-
-            <div class="running">
-                ● RUNNING
-            </div>
-
-        </div>
-
-
-        <div class="task-progress">
-            <span></span>
-        </div>
-
-
-        <div class="cost-grid">
-
-            <div class="cost-box">
-
-                <div class="cost-label">
-                    BEFORE
-                </div>
-
-                <div class="cost-value">
-                    5,000
-                </div>
-
-            </div>
-
-            <div class="cost-box">
-
-                <div class="cost-label">
-                    USED
-                </div>
-
-                <div class="cost-value">
-                    1,240
-                </div>
-
-            </div>
-
-            <div class="cost-box">
-
-                <div class="cost-label">
-                    BALANCE
-                </div>
-
-                <div class="cost-value"
-                     id="taskBalance">
-                    3,760
-                </div>
-
-            </div>
-
-            <div class="cost-box">
-
-                <div class="cost-label">
-                    COST
-                </div>
-
-                <div class="cost-value">
-                    $12.40
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="task-buttons">
-
-            <button class="task-btn"
-                    onclick="pauseTask(this)">
-                Pause
-            </button>
-
-            <button class="task-btn stop"
-                    onclick="stopTask(this)">
-                Stop
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="section-title"
-         style="margin-top:25px">
-        Live Cost Tracking
-    </div>
-
-
-    <div class="live-task">
-
-        <div class="live-top">
-
-            <div>
-                <div style="color:#7e8ba0;font-size:12px">
-                    REAL-TIME TRACKING
-                </div>
-
-                <div class="live-title">
-                    AI Task Processing
-                </div>
-            </div>
-
-            <div class="live-badge">
-                LIVE
-            </div>
-
-        </div>
-
-
-        <div class="live-cost">
-
-            <div class="live-cost-title">
-                Current Resource Cost
-            </div>
-
-            <div class="live-cost-value">
-                $12.40
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ================= WALLET ================= -->
-
-<div id="page-wallet" class="page">
-
-    <div class="section-title">
-        B2 Wallet
-    </div>
-
-
-    <div class="wallet-main">
-
-        <div class="wallet-label">
-            Available Credits
-        </div>
-
-        <div class="wallet-value"
-             id="walletCredits">
-            12,500
-        </div>
-
-        <div class="wallet-usd">
-            $125.00
-        </div>
-
-    </div>
-
-
-    <div class="section-title">
-        Buy Credits
-    </div>
-
-    <div class="package-grid">
-
-        <div class="package"
-             onclick="buyCredits(100)">
-            <div class="package-price">
-                $1
-            </div>
-            <div class="package-credit">
-                100 Credits
-            </div>
-        </div>
-
-        <div class="package"
-             onclick="buyCredits(500)">
-            <div class="package-price">
-                $5
-            </div>
-            <div class="package-credit">
-                500 Credits
-            </div>
-        </div>
-
-        <div class="package"
-             onclick="buyCredits(1000)">
-            <div class="package-price">
-                $10
-            </div>
-            <div class="package-credit">
-                1,000 Credits
-            </div>
-        </div>
-
-        <div class="package"
-             onclick="buyCredits(2500)">
-            <div class="package-price">
-                $25
-            </div>
-            <div class="package-credit">
-                2,500 Credits
-            </div>
-        </div>
-
-        <div class="package"
-             onclick="buyCredits(5000)">
-            <div class="package-price">
-                $50
-            </div>
-            <div class="package-credit">
-                5,000 Credits
-            </div>
-        </div>
-
-        <div class="package"
-             onclick="buyCredits(10000)">
-            <div class="package-price">
-                $100
-            </div>
-            <div class="package-credit">
-                10,000 Credits
-            </div>
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ================= SUBSCRIPTION ================= -->
-
-<div id="page-subscription" class="page">
-
-    <div class="section-title">
-        Subscription
-    </div>
-
-    <div class="subscription-card">
-
-        <div style="color:#9aa6c0">
-            B2 Monthly
-        </div>
-
-        <div class="subscription-price">
-            $5 / month
-        </div>
-
-        <div class="subscription-status">
-            ● Active
-        </div>
-
-        <div class="subscription-info">
-
-            Your subscription allows B2 paid work
-            when you also have sufficient Credits.
-
-            <br><br>
-
-            Credits and subscription are separate.
-
-            <br><br>
-
-            Subscription expires in:
-            <strong>23 days</strong>
-
-        </div>
-
-        <button class="primary-btn"
-                style="margin-top:20px">
-            Manage Subscription
+        <input id="commandInput"
+               placeholder="Tell B2 what to do...">
+
+        <button class="primary" onclick="runCommand()">
+            Run
         </button>
-
     </div>
+</div>
 
+<div class="stats">
+
+<div class="stat">
+    <div class="muted">Credits</div>
+    <strong id="homeCredits">3,760</strong>
+</div>
+
+<div class="stat">
+    <div class="muted">Subscription</div>
+    <strong>$5 / month</strong>
+</div>
+
+<div class="stat">
+    <div class="muted">Active Tasks</div>
+    <strong id="activeTaskCount">1</strong>
+</div>
+
+<div class="stat">
+    <div class="muted">Security</div>
+    <strong style="color:#5ff28a">Secure</strong>
 </div>
 
 </div>
 
+<div class="card">
+    <div class="card-title">Current Task</div>
 
-<!-- ================= BOTTOM NAV ================= -->
+    <h3 id="homeTaskName">
+        Creating Game
+    </h3>
 
-<nav class="bottom-nav">
-
-    <div class="nav-item active"
-         onclick="openPage('home',this)">
-        <span>⌂</span>
-        Home
+    <div class="progress">
+        <div id="homeProgress" style="width:64%"></div>
     </div>
 
-    <div class="nav-item"
-         onclick="openPage('agents',this)">
-        <span>🤖</span>
-        Agents
+    <div class="muted">
+        Live cost: <b id="homeCost">$12.40</b>
     </div>
 
-    <div class="nav-item"
-         onclick="openPage('projects',this)">
-        <span>📁</span>
-        Projects
-    </div>
+    <br>
 
-    <div class="nav-item"
-         onclick="openPage('tasks',this)">
-        <span>⚡</span>
-        Tasks
-    </div>
+    <button class="secondary"
+            onclick="showPage('tasks')">
+        Open Task Center
+    </button>
+</div>
 
-    <div class="nav-item"
-         onclick="openPage('wallet',this)">
-        <span>💳</span>
-        Wallet
-    </div>
+<div class="card">
 
-</nav>
+<div class="card-title">
+    Quick Actions
+</div>
+
+<div class="quick-grid">
+
+<button class="quick"
+onclick="openTask('Build App')">
+<div class="icon">📱</div>
+<b>Build App</b>
+<small class="muted">Create software</small>
+</button>
+
+<button class="quick"
+onclick="openTask('Build Game')">
+<div class="icon">🎮</div>
+<b>Build Game</b>
+<small class="muted">Create a game</small>
+</button>
+
+<button class="quick"
+onclick="openTask('Security Scan')">
+<div class="icon">🛡️</div>
+<b>Security</b>
+<small class="muted">Protect systems</small>
+</button>
+
+<button class="quick"
+onclick="openTask('Data Pipeline')">
+<div class="icon">🗄️</div>
+<b>Data</b>
+<small class="muted">Build pipelines</small>
+</button>
+
+<button class="quick"
+onclick="openAgent('UI/UX Design')">
+<div class="icon">🎨</div>
+<b>UI/UX</b>
+<small class="muted">Design interface</small>
+</button>
+
+<button class="quick"
+onclick="openAgent('3D Asset')">
+<div class="icon">🧊</div>
+<b>3D Assets</b>
+<small class="muted">Create assets</small>
+</button>
+
+</div>
+</div>
 
 </section>
 
+
+<!-- AGENTS -->
+
+<section id="agents" class="page">
+
+<h2>AI Agents</h2>
+<p class="muted" style="margin:7px 0 15px">
+Your digital workforce
+</p>
+
+<div id="agentList"></div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects" class="page">
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">
+
+<div>
+<h2>Projects</h2>
+<p class="muted">Manage your work</p>
+</div>
+
+<button class="primary"
+onclick="openProjectModal()">
++ New
+</button>
+
+</div>
+
+<div id="projectList"></div>
+
+</section>
+
+
+<!-- TASKS -->
+
+<section id="tasks" class="page">
+
+<h2>Task Center</h2>
+
+<p class="muted" style="margin:7px 0 15px">
+Monitor B2's live work
+</p>
+
+<div id="taskList"></div>
+
+</section>
+
+
+<!-- WALLET -->
+
+<section id="wallet" class="page">
+
+<h2>Wallet</h2>
+
+<div class="card wallet-balance">
+
+<div class="muted">
+Current Balance
+</div>
+
+<div class="credits"
+id="walletCredits">
+3,760
+</div>
+
+<div class="muted">
+1 Credit = $0.01
+</div>
+
+<br>
+
+<button class="primary"
+onclick="showToast('Payment screen will be connected later.')">
+Buy Credits
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="card-title">
+Credit Packages
+</div>
+
+<div class="packages">
+
+<div class="package"
+onclick="buyPackage(100)">
+<b>100</b>
+<span class="muted">$1.00</span>
+</div>
+
+<div class="package"
+onclick="buyPackage(500)">
+<b>500</b>
+<span class="muted">$5.00</span>
+</div>
+
+<div class="package"
+onclick="buyPackage(1000)">
+<b>1,000</b>
+<span class="muted">$10.00</span>
+</div>
+
+<div class="package"
+onclick="buyPackage(2500)">
+<b>2,500</b>
+<span class="muted">$25.00</span>
+</div>
+
+<div class="package"
+onclick="buyPackage(5000)">
+<b>5,000</b>
+<span class="muted">$50.00</span>
+</div>
+
+<div class="package"
+onclick="buyPackage(10000)">
+<b>10,000</b>
+<span class="muted">$100.00</span>
+</div>
+
+</div>
+</div>
+
+<div class="card">
+
+<div class="card-title">
+Subscription
+</div>
+
+<h3>$5 / month</h3>
+
+<p class="muted" style="margin:8px 0">
+Required for paid B2 work.
+</p>
+
+<button class="primary"
+onclick="showToast('Subscription checkout will be connected later.')">
+Manage Subscription
+</button>
+
+</div>
+
+</section>
+
+
+<!-- BOTTOM NAV -->
+
+<div class="bottom-nav">
+
+<button class="nav-btn active"
+onclick="showPage('home',this)">
+<div>⌂</div>
+Home
+</button>
+
+<button class="nav-btn"
+onclick="showPage('agents',this)">
+<div>🤖</div>
+Agents
+</button>
+
+<button class="nav-btn"
+onclick="showPage('projects',this)">
+<div>📁</div>
+Projects
+</button>
+
+<button class="nav-btn"
+onclick="showPage('tasks',this)">
+<div>⚙️</div>
+Tasks
+</button>
+
+<button class="nav-btn"
+onclick="showPage('wallet',this)">
+<div>💳</div>
+Wallet
+</button>
+
+</div>
+
+</div>
+
+
+<!-- AGENT MODAL -->
+
+<div class="modal" id="agentModal">
+
+<div class="modal-box">
+
+<button class="close"
+onclick="closeModal('agentModal')">
+×
+</button>
+
+<div class="detail-icon" id="agentIcon">
+🤖
+</div>
+
+<h2 id="agentTitle">
+Agent
+</h2>
+
+<p class="muted"
+id="agentDescription"
+style="margin:8px 0 18px">
+Specialist AI worker
+</p>
+
+<div class="card">
+
+<div class="feature">
+✓ Understands natural-language tasks
+</div>
+
+<div class="feature">
+✓ Works with other B2 agents
+</div>
+
+<div class="feature">
+✓ Permission controlled
+</div>
+
+<div class="feature">
+✓ Activity recorded in audit logs
+</div>
+
+<div class="feature">
+✓ Credit usage tracked in real time
+</div>
+
+</div>
+
+<button class="primary"
+style="width:100%"
+onclick="createAgentTask()">
+Start Task With This Agent
+</button>
+
+</div>
+
+</div>
+
+
+<!-- PROJECT MODAL -->
+
+<div class="modal" id="projectModal">
+
+<div class="modal-box">
+
+<button class="close"
+onclick="closeModal('projectModal')">
+×
+</button>
+
+<h2 style="margin-bottom:18px">
+Create Project
+</h2>
+
+<div class="form-group">
+<label>Project Name</label>
+<input id="projectName"
+placeholder="Example: My New Game">
+</div>
+
+<div class="form-group">
+<label>Project Type</label>
+
+<select id="projectType">
+<option>App</option>
+<option>Game</option>
+<option>Website</option>
+<option>Software</option>
+<option>Data System</option>
+<option>IoT</option>
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Description</label>
+
+<textarea id="projectDescription"
+placeholder="Describe what you want B2 to build..."></textarea>
+
+</div>
+
+<button class="primary"
+style="width:100%"
+onclick="createProject()">
+Create Project
+</button>
+
+</div>
+
+</div>
+
+
+<!-- TASK MODAL -->
+
+<div class="modal" id="taskModal">
+
+<div class="modal-box">
+
+<button class="close"
+onclick="closeModal('taskModal')">
+×
+</button>
+
+<h2>
+Create Task
+</h2>
+
+<p class="muted"
+style="margin:7px 0 18px">
+B2 will select the required agents.
+</p>
+
+<div class="form-group">
+
+<label>Task</label>
+
+<textarea id="taskDescription"
+placeholder="Example: Build a mobile game with login and leaderboard..."></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>Permission Level</label>
+
+<select id="permissionLevel">
+<option>Recommend</option>
+<option>Execute</option>
+<option>Autonomous</option>
+</select>
+
+</div>
+
+<div class="card">
+
+<div class="muted">
+Estimated resource usage
+</div>
+
+<h3 style="margin-top:8px">
+Calculated by B2
+</h3>
+
+<p class="muted">
+Actual cost will be tracked while the task runs.
+</p>
+
+</div>
+
+<button class="primary"
+style="width:100%"
+onclick="startNewTask()">
+Start Task
+</button>
+
+</div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div class="toast" id="toast">
+B2
 </div>
 
 
 <script>
 
-/* ================= SCREEN ================= */
+/* =========================
+   GLOBAL STATE
+========================= */
 
-function showScreen(id){
+let credits = 3760;
 
-    document.querySelectorAll(".screen")
-        .forEach(s=>{
-            s.classList.remove("active");
-        });
+let currentAgent = "";
 
-    document.getElementById(id)
-        .classList.add("active");
+let taskRunning = true;
+
+let taskUsed = 1240;
+
+let taskCost = 12.40;
+
+let progress = 64;
+
+let taskTimer;
+
+
+/* =========================
+   AGENT DATA
+========================= */
+
+const agents = [
+
+{
+name:"Coding & Development",
+icon:"💻",
+desc:"Build, modify, debug and maintain software."
+},
+
+{
+name:"Security Management",
+icon:"🛡️",
+desc:"Monitor systems and detect security problems."
+},
+
+{
+name:"Data Warehousing",
+icon:"🗄️",
+desc:"Create pipelines, schemas and data systems."
+},
+
+{
+name:"UI/UX Design",
+icon:"🎨",
+desc:"Design interfaces, user flows and experiences."
+},
+
+{
+name:"IoT",
+icon:"📡",
+desc:"Manage authorized devices, sensors and telemetry."
+},
+
+{
+name:"QA & Testing",
+icon:"🧪",
+desc:"Test software and detect bugs."
+},
+
+{
+name:"Game Management",
+icon:"🎮",
+desc:"Monitor and manage games."
+},
+
+{
+name:"3D Asset",
+icon:"🧊",
+desc:"Create and optimize 3D game assets."
+},
+
+{
+name:"Video Creator",
+icon:"🎬",
+desc:"Create scripts, storyboards and video workflows."
+},
+
+{
+name:"ASO",
+icon:"📈",
+desc:"Optimize app store listings and discoverability."
+},
+
+{
+name:"Marketing",
+icon:"📣",
+desc:"Plan campaigns and promotional content."
+},
+
+{
+name:"Customer Support",
+icon:"💬",
+desc:"Manage questions, tickets and support."
+},
+
+{
+name:"DevOps / Cloud",
+icon:"☁️",
+desc:"Manage deployments, infrastructure and monitoring."
+},
+
+{
+name:"Database",
+icon:"🗃️",
+desc:"Monitor and maintain databases."
+},
+
+{
+name:"Localization",
+icon:"🌍",
+desc:"Translate and localize products."
+},
+
+{
+name:"Analytics",
+icon:"📊",
+desc:"Analyze users, revenue and system data."
+},
+
+{
+name:"Business",
+icon:"💼",
+desc:"Manage business operations and workflows."
+},
+
+{
+name:"Project Manager",
+icon:"📋",
+desc:"Break projects into tasks and coordinate agents."
+},
+
+{
+name:"Communication",
+icon:"✉️",
+desc:"Handle approved communications and notifications."
+},
+
+{
+name:"Competitor Research",
+icon:"🔎",
+desc:"Analyze competitors and market information."
+},
+
+{
+name:"Knowledge",
+icon:"📚",
+desc:"Work with approved company knowledge."
+},
+
+{
+name:"Brand",
+icon:"✨",
+desc:"Manage brand identity and visual direction."
+},
+
+{
+name:"Voice",
+icon:"🎙️",
+desc:"Handle voice commands and responses."
+},
+
+{
+name:"Device",
+icon:"📱",
+desc:"Monitor authorized connected devices."
+}
+
+];
+
+
+/* =========================
+   AGENT LIST
+========================= */
+
+function loadAgents(){
+
+const list =
+document.getElementById("agentList");
+
+list.innerHTML = "";
+
+agents.forEach((agent,index)=>{
+
+list.innerHTML += `
+
+<div class="agent"
+onclick="openAgent('${agent.name}')">
+
+<div class="agent-icon">
+${agent.icon}
+</div>
+
+<div class="agent-info">
+
+<b>${agent.name}</b>
+
+<small>
+${agent.desc}
+</small>
+
+</div>
+
+<div>›</div>
+
+</div>
+
+`;
+
+});
+
 }
 
 
-/* ================= SPLASH ================= */
+/* =========================
+   PROJECT DATA
+========================= */
+
+let projects = [
+
+{
+name:"My New Game",
+type:"Game",
+progress:64,
+status:"Building"
+},
+
+{
+name:"Business App",
+type:"App",
+progress:100,
+status:"Completed"
+}
+
+];
+
+
+function loadProjects(){
+
+const list =
+document.getElementById("projectList");
+
+list.innerHTML = "";
+
+projects.forEach(project=>{
+
+list.innerHTML += `
+
+<div class="project">
+
+<div class="project-head">
+
+<div>
+<b>${project.name}</b>
+
+<div class="muted"
+style="margin-top:5px">
+${project.type}
+</div>
+
+</div>
+
+<span class="badge">
+${project.status}
+</span>
+
+</div>
+
+<div class="progress">
+
+<div style="width:${project.progress}%"></div>
+
+</div>
+
+<div class="muted">
+${project.progress}% complete
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =========================
+   TASK LIST
+========================= */
+
+function loadTasks(){
+
+const list =
+document.getElementById("taskList");
+
+list.innerHTML = `
+
+<div class="task">
+
+<div class="task-head">
+
+<div>
+<b id="taskTitle">
+Creating Game
+</b>
+
+<div class="muted">
+Coding Agent + QA Agent
+</div>
+
+</div>
+
+<div class="live">
+● LIVE
+</div>
+
+</div>
+
+<div class="progress">
+
+<div id="taskProgress"
+style="width:${progress}%">
+</div>
+
+</div>
+
+<div class="cost-grid">
+
+<div class="cost-box">
+
+<span>BEFORE</span>
+
+<b>5,000</b>
+
+</div>
+
+<div class="cost-box">
+
+<span>USED</span>
+
+<b id="taskUsed">
+${taskUsed.toLocaleString()}
+</b>
+
+</div>
+
+<div class="cost-box">
+
+<span>BALANCE</span>
+
+<b id="taskBalance">
+${credits.toLocaleString()}
+</b>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="cost-box">
+
+<span>LIVE COST</span>
+
+<b id="taskLiveCost">
+$${taskCost.toFixed(2)}
+</b>
+
+</div>
+
+<br>
+
+<button class="secondary"
+onclick="pauseTask()">
+Pause
+</button>
+
+<button class="secondary"
+onclick="stopTask()">
+Stop
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showPage(id,button){
+
+document
+.querySelectorAll(".page")
+.forEach(page=>{
+page.classList.remove("active");
+});
+
+document
+.getElementById(id)
+.classList.add("active");
+
+document
+.querySelectorAll(".nav-btn")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+if(button){
+button.classList.add("active");
+}
+
+window.scrollTo(0,0);
+
+}
+
+
+/* =========================
+   AGENT DETAIL
+========================= */
+
+function openAgent(name){
+
+const agent =
+agents.find(a=>a.name===name);
+
+if(!agent)return;
+
+currentAgent = name;
+
+document
+.getElementById("agentIcon")
+.innerText = agent.icon;
+
+document
+.getElementById("agentTitle")
+.innerText = agent.name;
+
+document
+.getElementById("agentDescription")
+.innerText = agent.desc;
+
+document
+.getElementById("agentModal")
+.classList.add("active");
+
+}
+
+
+function createAgentTask(){
+
+closeModal("agentModal");
+
+document
+.getElementById("taskDescription")
+.value =
+"Work using " + currentAgent + " agent.";
+
+document
+.getElementById("taskModal")
+.classList.add("active");
+
+}
+
+
+/* =========================
+   PROJECT
+========================= */
+
+function openProjectModal(){
+
+document
+.getElementById("projectModal")
+.classList.add("active");
+
+}
+
+
+function createProject(){
+
+const name =
+document.getElementById("projectName").value.trim();
+
+const type =
+document.getElementById("projectType").value;
+
+if(!name){
+
+showToast("Enter a project name.");
+
+return;
+
+}
+
+projects.unshift({
+
+name:name,
+
+type:type,
+
+progress:0,
+
+status:"Planning"
+
+});
+
+loadProjects();
+
+closeModal("projectModal");
+
+showToast("Project created.");
+
+}
+
+
+/* =========================
+   TASK
+========================= */
+
+function openTask(name){
+
+document
+.getElementById("taskDescription")
+.value =
+name;
+
+document
+.getElementById("taskModal")
+.classList.add("active");
+
+}
+
+
+function startNewTask(){
+
+const description =
+document
+.getElementById("taskDescription")
+.value.trim();
+
+if(!description){
+
+showToast("Describe the task first.");
+
+return;
+
+}
+
+closeModal("taskModal");
+
+startLiveTask(description);
+
+showPage("tasks");
+
+showToast("B2 task started.");
+
+}
+
+
+/* =========================
+   LIVE TASK
+========================= */
+
+function startLiveTask(name){
+
+taskRunning = true;
+
+taskUsed = 0;
+
+taskCost = 0;
+
+progress = 0;
+
+document
+.getElementById("taskTitle")
+.innerText = name;
+
+clearInterval(taskTimer);
+
+taskTimer =
+setInterval(()=>{
+
+if(!taskRunning)return;
+
+if(credits <= 0){
+
+credits = 0;
+
+stopTask();
+
+showToast(
+"Credits exhausted. Task stopped."
+);
+
+return;
+
+}
+
+/*
+1 tick = 10 Credits
+*/
+
+const usage = 10;
+
+credits -= usage;
+
+taskUsed += usage;
+
+taskCost =
+taskUsed * 0.01;
+
+progress += 1;
+
+if(progress > 100)
+progress = 100;
+
+updateUI();
+
+if(progress >= 100){
+
+clearInterval(taskTimer);
+
+taskRunning = false;
+
+showToast(
+"Task completed successfully."
+);
+
+}
+
+},1000);
+
+}
+
+
+/* =========================
+   UPDATE UI
+========================= */
+
+function updateUI(){
+
+document
+.getElementById("walletCredits")
+.innerText =
+credits.toLocaleString();
+
+document
+.getElementById("homeCredits")
+.innerText =
+credits.toLocaleString();
+
+document
+.getElementById("taskUsed")
+.innerText =
+taskUsed.toLocaleString();
+
+document
+.getElementById("taskBalance")
+.innerText =
+credits.toLocaleString();
+
+document
+.getElementById("taskLiveCost")
+.innerText =
+"$" + taskCost.toFixed(2);
+
+document
+.getElementById("homeCost")
+.innerText =
+"$" + taskCost.toFixed(2);
+
+document
+.getElementById("taskProgress")
+style.width =
+progress + "%";
+
+document
+.getElementById("homeProgress")
+style.width =
+progress + "%";
+
+}
+
+
+/* =========================
+   PAUSE
+========================= */
+
+function pauseTask(){
+
+taskRunning = !taskRunning;
+
+showToast(
+taskRunning
+? "Task resumed."
+: "Task paused."
+);
+
+}
+
+
+/* =========================
+   STOP
+========================= */
+
+function stopTask(){
+
+taskRunning = false;
+
+clearInterval(taskTimer);
+
+showToast("Task stopped.");
+
+}
+
+
+/* =========================
+   COMMAND
+========================= */
+
+function runCommand(){
+
+const input =
+document
+.getElementById("commandInput")
+.value
+.trim();
+
+if(!input){
+
+showToast(
+"Tell B2 what you want."
+);
+
+return;
+
+}
+
+document
+.getElementById("taskDescription")
+.value =
+input;
+
+document
+.getElementById("taskModal")
+.classList.add("active");
+
+}
+
+
+/* =========================
+   BUY PACKAGE
+========================= */
+
+function buyPackage(amount){
+
+showToast(
+amount.toLocaleString() +
+" Credits selected. Payment will be connected later."
+);
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+function closeModal(id){
+
+document
+.getElementById(id)
+.classList.remove("active");
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message){
+
+const toast =
+document.getElementById("toast");
+
+toast.innerText = message;
+
+toast.classList.add("show");
 
 setTimeout(()=>{
-    showScreen("welcome");
-},1800);
-
-
-/* ================= LOGIN ================= */
-
-function loginDemo(){
-
-    showScreen("home");
+toast.classList.remove("show");
+},2500);
 
 }
 
 
-/* ================= PAGE NAVIGATION ================= */
+/* =========================
+   START
+========================= */
 
-function openPage(page,element){
+loadAgents();
 
-    document.querySelectorAll(".page")
-        .forEach(p=>{
-            p.classList.remove("active");
-        });
+loadProjects();
 
-    document.getElementById("page-"+page)
-        .classList.add("active");
+loadTasks();
 
-    document.querySelectorAll(".nav-item")
-        .forEach(n=>{
-            n.classList.remove("active");
-        });
-
-    element.classList.add("active");
-
-}
-
-
-/* ================= COMMAND ================= */
-
-function startCommand(){
-
-    const input =
-        document.getElementById("commandInput");
-
-    const command =
-        input.value.trim();
-
-    if(!command){
-
-        input.focus();
-
-        return;
-
-    }
-
-    startTask(command,"AI Orchestrator");
-
-}
-
-
-/* ================= START TASK ================= */
-
-function startTask(task,agent){
-
-    document.querySelectorAll(".page")
-        .forEach(p=>{
-            p.classList.remove("active");
-        });
-
-    document.getElementById("page-tasks")
-        .classList.add("active");
-
-    document.querySelectorAll(".nav-item")
-        .forEach(n=>{
-            n.classList.remove("active");
-        });
-
-    document.querySelectorAll(".nav-item")[3]
-        .classList.add("active");
-
-    alert(
-        "Task started\n\n"+
-        "Task: "+task+
-        "\nAgent: "+agent+
-        "\n\nReal-time Credit Tracking activated."
-    );
-
-}
-
-
-/* ================= PAUSE ================= */
-
-function pauseTask(button){
-
-    button.innerText = "Resume";
-
-    button.onclick = function(){
-
-        button.innerText = "Pause";
-
-    };
-
-}
-
-
-/* ================= STOP ================= */
-
-function stopTask(button){
-
-    const card =
-        button.closest(".task-card");
-
-    card.style.opacity = ".45";
-
-    button.innerText = "Stopped";
-
-    button.disabled = true;
-
-}
-
-
-/* ================= BUY CREDIT ================= */
-
-function buyCredits(amount){
-
-    alert(
-        "Payment system will be connected later.\n\n"+
-        amount+
-        " Credits selected."
-    );
-
-}
+updateUI();
 
 </script>
 
