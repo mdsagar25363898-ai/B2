@@ -1572,14 +1572,24 @@ showToast("B2 task started.");
 
 /* =========================
    LIVE TASK
-   COST BASED SIMULATION
+   RESOURCE USAGE SIMULATION
 ========================= */
 
 let taskEstimatedCredits = 500;
 let taskConsumedCredits = 0;
-let taskLastProgress = 0;
+let taskRunning = false;
+let taskProgressTimer = null;
+let resourceTimer = null;
+
+
+/* =========================
+   START TASK
+========================= */
 
 function startLiveTask(name){
+
+    clearInterval(taskProgressTimer);
+    clearInterval(resourceTimer);
 
     taskRunning = true;
 
@@ -1590,29 +1600,72 @@ function startLiveTask(name){
     taskConsumedCredits = 0;
 
     /*
-      Demo task estimated cost.
-
+      Demo estimated cost:
       500 Credits = $5.00
     */
 
     taskEstimatedCredits = 500;
 
-    taskLastProgress = 0;
-
     document
         .getElementById("taskTitle")
         .innerText = name;
 
-    clearInterval(taskTimer);
 
     /*
-      প্রতি সেকেন্ডে Credit কাটবে না।
+      --------------------------------
+      TASK PROGRESS
+      --------------------------------
 
-      Task progress পরিবর্তনের সময়
-      প্রয়োজন অনুযায়ী usage হিসাব হবে।
+      Progress is only a visual simulation.
+      It does NOT directly charge credits.
     */
 
-    taskTimer = setInterval(()=>{
+    taskProgressTimer = setInterval(()=>{
+
+        if(!taskRunning) return;
+
+        if(progress < 100){
+
+            progress += 1;
+
+            updateUI();
+
+        }
+
+        if(progress >= 100){
+
+            clearInterval(taskProgressTimer);
+            clearInterval(resourceTimer);
+
+            taskRunning = false;
+
+            showToast(
+                "Task completed successfully."
+            );
+
+        }
+
+    },1000);
+
+
+    /*
+      --------------------------------
+      RESOURCE USAGE EVENTS
+      --------------------------------
+
+      Credits are charged only when
+      a simulated resource event happens.
+
+      Example resources:
+      AI
+      API
+      Server
+      Database
+      Storage
+      GPU
+    */
+
+    resourceTimer = setInterval(()=>{
 
         if(!taskRunning) return;
 
@@ -1622,7 +1675,8 @@ function startLiveTask(name){
 
             taskRunning = false;
 
-            clearInterval(taskTimer);
+            clearInterval(taskProgressTimer);
+            clearInterval(resourceTimer);
 
             updateUI();
 
@@ -1633,79 +1687,255 @@ function startLiveTask(name){
             return;
         }
 
-        /*
-          Progress ধীরে বাড়বে।
-
-          এটি শুধু UI simulation।
-          বাস্তব billing-এ provider usage
-          থেকে actual cost আসবে।
-        */
-
-        progress += 1;
-
-        if(progress > 100){
-            progress = 100;
-        }
 
         /*
-          Estimated task cost থেকে
-          বর্তমান progress-এর ব্যবহার হিসাব।
-          
-          Example:
-          500 Credits task
-          20% complete = 100 Credits used
+          Simulated resource event.
+
+          Each event consumes a small amount.
         */
 
-        const expectedUsed =
-            Math.floor(
-                taskEstimatedCredits *
-                (progress / 100)
-            );
+        const resourceEvents = [
+            {
+                name:"AI",
+                credits:5
+            },
+            {
+                name:"API",
+                credits:3
+            },
+            {
+                name:"Server",
+                credits:4
+            },
+            {
+                name:"Database",
+                credits:2
+            },
+            {
+                name:"Storage",
+                credits:1
+            }
+        ];
+
 
         /*
-          শুধু নতুন ব্যবহারটুকু deduct করব।
+          Select one resource event.
         */
 
-        const newUsage =
-            expectedUsed -
+        const event =
+            resourceEvents[
+                Math.floor(
+                    Math.random() *
+                    resourceEvents.length
+                )
+            ];
+
+
+        /*
+          Do not exceed estimated task cost.
+        */
+
+        const remainingEstimated =
+            taskEstimatedCredits -
             taskConsumedCredits;
 
-        if(newUsage > 0){
 
-            const actualUsage =
-                Math.min(
-                    newUsage,
-                    credits
-                );
+        if(remainingEstimated <= 0){
 
-            credits -= actualUsage;
+            clearInterval(resourceTimer);
 
-            taskUsed += actualUsage;
+            return;
 
-            taskConsumedCredits += actualUsage;
-
-            taskCost =
-                taskUsed * 0.01;
         }
+
+
+        /*
+          Actual charge for this event.
+        */
+
+        const actualUsage =
+            Math.min(
+                event.credits,
+                remainingEstimated,
+                credits
+            );
+
+
+        if(actualUsage <= 0){
+
+            return;
+
+        }
+
+
+        /*
+          Deduct Credits.
+        */
+
+        credits -= actualUsage;
+
+        taskUsed += actualUsage;
+
+        taskConsumedCredits += actualUsage;
+
+
+        /*
+          USD cost.
+
+          1 Credit = $0.01
+        */
+
+        taskCost =
+            taskUsed * 0.01;
+
 
         updateUI();
 
-        /*
-          Task শেষ
-        */
 
-        if(progress >= 100){
+    },3000);
 
-            clearInterval(taskTimer);
+}
 
-            taskRunning = false;
 
-            showToast(
-                "Task completed successfully."
-            );
-        }
+/* =========================
+   PAUSE TASK
+========================= */
 
-    },1000);
+function pauseTask(){
+
+    taskRunning = !taskRunning;
+
+    if(taskRunning){
+
+        showToast(
+            "Task resumed."
+        );
+
+    }else{
+
+        showToast(
+            "Task paused."
+        );
+
+    }
+
+}
+
+
+/* =========================
+   STOP TASK
+========================= */
+
+function stopTask(){
+
+    taskRunning = false;
+
+    clearInterval(taskProgressTimer);
+    clearInterval(resourceTimer);
+
+    showToast(
+        "Task stopped."
+    );
+
+}
+
+
+/* =========================
+   UPDATE UI
+========================= */
+
+function updateUI(){
+
+    const wallet =
+        document.getElementById("walletCredits");
+
+    const home =
+        document.getElementById("homeCredits");
+
+    const used =
+        document.getElementById("taskUsed");
+
+    const balance =
+        document.getElementById("taskBalance");
+
+    const liveCost =
+        document.getElementById("taskLiveCost");
+
+    const homeCost =
+        document.getElementById("homeCost");
+
+    const taskProgress =
+        document.getElementById("taskProgress");
+
+    const homeProgress =
+        document.getElementById("homeProgress");
+
+
+    if(wallet){
+
+        wallet.innerText =
+            credits.toLocaleString();
+
+    }
+
+
+    if(home){
+
+        home.innerText =
+            credits.toLocaleString();
+
+    }
+
+
+    if(used){
+
+        used.innerText =
+            taskUsed.toLocaleString();
+
+    }
+
+
+    if(balance){
+
+        balance.innerText =
+            credits.toLocaleString();
+
+    }
+
+
+    if(liveCost){
+
+        liveCost.innerText =
+            "$" +
+            taskCost.toFixed(2);
+
+    }
+
+
+    if(homeCost){
+
+        homeCost.innerText =
+            "$" +
+            taskCost.toFixed(2);
+
+    }
+
+
+    if(taskProgress){
+
+        taskProgress.style.width =
+            progress + "%";
+
+    }
+
+
+    if(homeProgress){
+
+        homeProgress.style.width =
+            progress + "%";
+
+    }
+
 }
 /* =========================
    UPDATE UI
