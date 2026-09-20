@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>B2 - AI Work Agent</title>
 
 <style>
@@ -10,7 +10,7 @@
     box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
 }
 
 body{
@@ -24,43 +24,48 @@ button{
     cursor:pointer;
 }
 
+input,textarea,select{
+    font-family:Arial,sans-serif;
+}
+
 .app{
+    width:100%;
     max-width:480px;
-    margin:auto;
     min-height:100vh;
+    margin:auto;
     background:
-        radial-gradient(circle at top,#18233d 0,#070b14 45%);
+    radial-gradient(circle at top,#172541 0,#070b14 48%);
     padding-bottom:90px;
 }
 
 /* HEADER */
 
 .header{
-    padding:22px 18px 12px;
+    padding:20px 17px 10px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
 }
 
 .logo{
-    font-size:28px;
-    font-weight:800;
+    font-size:29px;
+    font-weight:900;
 }
 
 .logo span{
     color:#5b8cff;
 }
 
-.status{
-    padding:7px 11px;
-    background:#102719;
-    border:1px solid #245d36;
-    color:#65e58b;
+.online{
+    font-size:10px;
+    color:#62ef8a;
+    padding:7px 10px;
+    border:1px solid #245e37;
+    background:#102319;
     border-radius:20px;
-    font-size:11px;
 }
 
-/* PAGES */
+/* PAGE */
 
 .page{
     display:none;
@@ -71,76 +76,83 @@ button{
     display:block;
 }
 
-/* CARDS */
-
-.card{
-    background:rgba(20,27,43,.88);
-    border:1px solid #26324a;
-    border-radius:18px;
-    padding:17px;
-    margin-bottom:14px;
-    box-shadow:0 10px 35px rgba(0,0,0,.2);
+h1{
+    font-size:25px;
 }
 
-.card-title{
-    font-size:14px;
-    color:#8f9bb3;
-    margin-bottom:8px;
+h2{
+    font-size:21px;
 }
 
-.big{
-    font-size:28px;
-    font-weight:800;
+h3{
+    font-size:17px;
 }
 
 .muted{
-    color:#8f9bb3;
+    color:#8995aa;
     font-size:12px;
+}
+
+/* CARD */
+
+.card{
+    background:rgba(17,25,40,.94);
+    border:1px solid #27344b;
+    border-radius:18px;
+    padding:16px;
+    margin-bottom:14px;
 }
 
 /* COMMAND */
 
 .command{
-    background:linear-gradient(135deg,#172441,#101827);
-    border:1px solid #30466f;
-    padding:18px;
+    background:linear-gradient(135deg,#172643,#101927);
+    border:1px solid #304873;
     border-radius:20px;
+    padding:17px;
     margin-bottom:15px;
 }
 
 .command h2{
-    font-size:18px;
-    margin-bottom:10px;
+    margin-bottom:11px;
 }
 
-.command-box{
+.command-row{
     display:flex;
     gap:8px;
 }
 
-.command-box input{
+.command-row input{
     flex:1;
+    min-width:0;
     background:#090e18;
-    border:1px solid #2d3a54;
     color:#fff;
+    border:1px solid #2d3b55;
+    border-radius:11px;
     padding:13px;
-    border-radius:12px;
     outline:none;
 }
 
 .primary{
     background:#4f7cff;
-    color:#fff;
+    color:white;
+    border-radius:11px;
     padding:12px 16px;
-    border-radius:12px;
     font-weight:bold;
 }
 
 .secondary{
     background:#202b40;
-    color:#fff;
-    padding:11px 14px;
-    border-radius:11px;
+    color:white;
+    border-radius:10px;
+    padding:10px 14px;
+}
+
+.danger{
+    background:#48202a;
+    color:#ff8395;
+    border-radius:10px;
+    padding:10px 14px;
 }
 
 /* STATS */
@@ -149,46 +161,65 @@ button{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:10px;
+    margin-bottom:14px;
 }
 
 .stat{
     background:#111827;
-    border:1px solid #26324a;
+    border:1px solid #26334a;
     border-radius:15px;
-    padding:15px;
+    padding:14px;
 }
 
 .stat strong{
     display:block;
     font-size:21px;
-    margin-top:5px;
+    margin-top:6px;
 }
 
-/* QUICK ACTIONS */
+/* QUICK */
 
 .quick-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1fr 1fr;
     gap:10px;
 }
 
 .quick{
     background:#111827;
-    border:1px solid #26324a;
+    border:1px solid #27344b;
     border-radius:15px;
-    padding:15px;
+    color:white;
     text-align:left;
-    color:#fff;
+    padding:14px;
 }
 
-.quick .icon{
+.quick-icon{
     font-size:25px;
-    margin-bottom:8px;
+    margin-bottom:7px;
 }
 
 .quick b{
     display:block;
     margin-bottom:4px;
+}
+
+/* PROGRESS */
+
+.progress{
+    width:100%;
+    height:7px;
+    background:#202b3d;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0 7px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#5b8cff;
+    transition:width .3s;
 }
 
 /* AGENTS */
@@ -198,17 +229,17 @@ button{
     align-items:center;
     gap:12px;
     background:#111827;
-    border:1px solid #26324a;
-    padding:14px;
+    border:1px solid #27344b;
     border-radius:15px;
-    margin-bottom:10px;
+    padding:13px;
+    margin-bottom:9px;
 }
 
 .agent-icon{
     width:48px;
     height:48px;
     border-radius:14px;
-    background:#1d2b48;
+    background:#1b2a48;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -225,63 +256,62 @@ button{
 }
 
 .agent-info small{
-    color:#8f9bb3;
+    color:#8995aa;
 }
 
 /* PROJECT */
 
 .project{
     background:#111827;
-    border:1px solid #26324a;
+    border:1px solid #27344b;
     border-radius:17px;
     padding:15px;
-    margin-bottom:12px;
+    margin-bottom:11px;
 }
 
-.project-head{
+.project-top{
     display:flex;
     justify-content:space-between;
+    gap:10px;
 }
 
 .badge{
+    white-space:nowrap;
+    font-size:10px;
     padding:5px 8px;
     border-radius:8px;
-    font-size:10px;
-    background:#172d51;
-    color:#75a0ff;
-}
-
-.progress{
-    height:7px;
-    background:#202a3b;
-    border-radius:10px;
-    overflow:hidden;
-    margin:13px 0 7px;
-}
-
-.progress div{
-    height:100%;
-    background:#5b8cff;
+    background:#172c50;
+    color:#79a1ff;
 }
 
 /* TASK */
 
 .task{
     background:#111827;
-    border:1px solid #26324a;
-    border-radius:17px;
+    border:1px solid #30425e;
+    border-radius:18px;
     padding:16px;
-    margin-bottom:12px;
+    margin-bottom:13px;
 }
 
-.task-head{
+.task-top{
     display:flex;
     justify-content:space-between;
-    margin-bottom:10px;
+    gap:10px;
 }
 
 .live{
     color:#5ff28a;
+    font-size:11px;
+}
+
+.paused{
+    color:#ffc45c;
+    font-size:11px;
+}
+
+.stopped{
+    color:#ff7588;
     font-size:11px;
 }
 
@@ -293,15 +323,15 @@ button{
 }
 
 .cost-box{
-    background:#0b111d;
-    border-radius:10px;
+    background:#0a101b;
+    border-radius:11px;
     padding:10px;
 }
 
 .cost-box span{
     display:block;
-    color:#7e8ba4;
-    font-size:10px;
+    color:#77849a;
+    font-size:9px;
     margin-bottom:5px;
 }
 
@@ -309,70 +339,30 @@ button{
     font-size:14px;
 }
 
-/* AGENT DETAIL */
-
-.detail-icon{
-    width:75px;
-    height:75px;
-    border-radius:22px;
-    background:#172849;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:38px;
-    margin-bottom:15px;
-}
-
-.feature{
-    padding:11px 0;
-    border-bottom:1px solid #202a3b;
-    font-size:13px;
-}
-
-.feature:last-child{
-    border-bottom:0;
-}
-
-/* FORMS */
-
-.form-group{
-    margin-bottom:13px;
-}
-
-.form-group label{
-    display:block;
-    font-size:12px;
-    color:#8f9bb3;
-    margin-bottom:6px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-    width:100%;
-    padding:13px;
-    background:#0b111d;
-    color:#fff;
-    border:1px solid #29364e;
+.resource{
+    margin-top:12px;
+    background:#0a101b;
     border-radius:11px;
-    outline:none;
+    padding:11px;
 }
 
-.form-group textarea{
-    min-height:100px;
-    resize:none;
+.resource-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:11px;
+    padding:5px 0;
 }
 
 /* WALLET */
 
-.wallet-balance{
+.wallet{
     text-align:center;
     padding:25px 10px;
 }
 
-.wallet-balance .credits{
-    font-size:38px;
-    font-weight:800;
+.wallet-number{
+    font-size:39px;
+    font-weight:900;
     margin:10px 0;
 }
 
@@ -384,9 +374,9 @@ button{
 
 .package{
     background:#111827;
-    border:1px solid #26324a;
-    padding:16px;
+    border:1px solid #29374f;
     border-radius:15px;
+    padding:15px;
 }
 
 .package b{
@@ -395,47 +385,15 @@ button{
     margin-bottom:5px;
 }
 
-/* NAV */
-
-.bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:100%;
-    max-width:480px;
-    height:72px;
-    background:rgba(8,12,21,.96);
-    border-top:1px solid #253047;
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    z-index:100;
-}
-
-.nav-btn{
-    background:none;
-    color:#73809a;
-    font-size:10px;
-}
-
-.nav-btn div{
-    font-size:20px;
-    margin-bottom:3px;
-}
-
-.nav-btn.active{
-    color:#6f96ff;
-}
-
 /* MODAL */
 
 .modal{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.7);
     display:none;
     align-items:flex-end;
     justify-content:center;
+    background:rgba(0,0,0,.72);
     z-index:200;
 }
 
@@ -446,41 +404,128 @@ button{
 .modal-box{
     width:100%;
     max-width:480px;
-    background:#101827;
-    border:1px solid #293750;
-    border-radius:25px 25px 0 0;
-    padding:20px;
     max-height:90vh;
     overflow:auto;
+    background:#101827;
+    border:1px solid #2b3a54;
+    border-radius:24px 24px 0 0;
+    padding:20px;
 }
 
 .close{
     float:right;
-    background:#202b40;
-    color:#fff;
     width:32px;
     height:32px;
     border-radius:50%;
+    background:#202b40;
+    color:#fff;
+    font-size:18px;
 }
 
-/* ALERT */
+.detail-icon{
+    width:75px;
+    height:75px;
+    border-radius:22px;
+    background:#192a4a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:38px;
+    margin-bottom:14px;
+}
+
+.feature{
+    padding:11px 0;
+    border-bottom:1px solid #222d40;
+    font-size:13px;
+}
+
+.feature:last-child{
+    border-bottom:0;
+}
+
+/* FORM */
+
+.form-group{
+    margin-bottom:13px;
+}
+
+.form-group label{
+    display:block;
+    color:#8c98ac;
+    font-size:12px;
+    margin-bottom:6px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+    background:#090f19;
+    border:1px solid #29374f;
+    color:#fff;
+    border-radius:11px;
+    padding:13px;
+    outline:none;
+}
+
+.form-group textarea{
+    min-height:105px;
+    resize:none;
+}
+
+/* NAV */
+
+.bottom-nav{
+    position:fixed;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:480px;
+    height:72px;
+    background:rgba(7,11,20,.97);
+    border-top:1px solid #263249;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    z-index:100;
+}
+
+.nav-btn{
+    background:none;
+    color:#758198;
+    font-size:10px;
+}
+
+.nav-btn div{
+    font-size:20px;
+    margin-bottom:3px;
+}
+
+.nav-btn.active{
+    color:#7197ff;
+}
+
+/* TOAST */
 
 .toast{
     position:fixed;
-    top:20px;
     left:50%;
-    transform:translateX(-50%) translateY(-100px);
-    background:#18243a;
-    border:1px solid #3a4c70;
-    padding:13px 17px;
+    top:18px;
+    transform:translate(-50%,-100px);
+    background:#17243a;
+    border:1px solid #405579;
     border-radius:12px;
-    z-index:300;
-    transition:.3s;
+    padding:12px 16px;
+    z-index:500;
     font-size:12px;
+    transition:.3s;
+    max-width:90%;
+    text-align:center;
 }
 
 .toast.show{
-    transform:translateX(-50%) translateY(0);
+    transform:translate(-50%,0);
 }
 
 /* MOBILE */
@@ -488,6 +533,10 @@ button{
 @media(max-width:350px){
     .packages{
         grid-template-columns:1fr;
+    }
+
+    .cost-grid{
+        grid-template-columns:1fr 1fr 1fr;
     }
 }
 </style>
@@ -499,1376 +548,1865 @@ button{
 
 <!-- HEADER -->
 
-<div class="header">
-    <div class="logo">B<span>2</span></div>
-    <div class="status">● SYSTEM ONLINE</div>
-</div>
+<header class="header">
 
-<!-- HOME -->
+    <div class="logo">
+        B<span>2</span>
+    </div>
+
+    <div class="online">
+        ● SYSTEM ONLINE
+    </div>
+
+</header>
+
+
+<!-- =========================
+     HOME
+========================= -->
 
 <section id="home" class="page active">
 
-<div class="command">
-    <h2>What can B2 do for you?</h2>
+    <div class="command">
 
-    <div class="command-box">
-        <input id="commandInput"
-               placeholder="Tell B2 what to do...">
+        <h2>
+            What can B2 do for you?
+        </h2>
 
-        <button class="primary" onclick="runCommand()">
-            Run
+        <div class="command-row">
+
+            <input
+                id="commandInput"
+                placeholder="Tell B2 what to do..."
+            >
+
+            <button
+                class="primary"
+                onclick="runCommand()"
+            >
+                Run
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+            <div class="muted">
+                Credits
+            </div>
+
+            <strong id="homeCredits">
+                3,760
+            </strong>
+        </div>
+
+
+        <div class="stat">
+            <div class="muted">
+                Subscription
+            </div>
+
+            <strong>
+                $5 / month
+            </strong>
+        </div>
+
+
+        <div class="stat">
+            <div class="muted">
+                Active Tasks
+            </div>
+
+            <strong id="activeTaskCount">
+                0
+            </strong>
+        </div>
+
+
+        <div class="stat">
+            <div class="muted">
+                Security
+            </div>
+
+            <strong style="color:#5ff28a">
+                Secure
+            </strong>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="muted">
+            Current Task
+        </div>
+
+        <h3
+            id="homeTaskName"
+            style="margin-top:7px"
+        >
+            No active task
+        </h3>
+
+        <div class="progress">
+
+            <div
+                id="homeProgress"
+                class="progress-bar"
+                style="width:0%"
+            ></div>
+
+        </div>
+
+        <div class="muted">
+            Live cost:
+            <b id="homeCost">
+                $0.00
+            </b>
+        </div>
+
+        <br>
+
+        <button
+            class="secondary"
+            onclick="showPage('tasks')"
+        >
+            Open Task Center
         </button>
-    </div>
-</div>
 
-<div class="stats">
-
-<div class="stat">
-    <div class="muted">Credits</div>
-    <strong id="homeCredits">3,760</strong>
-</div>
-
-<div class="stat">
-    <div class="muted">Subscription</div>
-    <strong>$5 / month</strong>
-</div>
-
-<div class="stat">
-    <div class="muted">Active Tasks</div>
-    <strong id="activeTaskCount">1</strong>
-</div>
-
-<div class="stat">
-    <div class="muted">Security</div>
-    <strong style="color:#5ff28a">Secure</strong>
-</div>
-
-</div>
-
-<div class="card">
-    <div class="card-title">Current Task</div>
-
-    <h3 id="homeTaskName">
-        Creating Game
-    </h3>
-
-    <div class="progress">
-        <div id="homeProgress" style="width:64%"></div>
     </div>
 
-    <div class="muted">
-        Live cost: <b id="homeCost">$12.40</b>
+
+    <div class="card">
+
+        <div
+            class="muted"
+            style="margin-bottom:11px"
+        >
+            Quick Actions
+        </div>
+
+        <div class="quick-grid">
+
+            <button
+                class="quick"
+                onclick="openTask('Build App')"
+            >
+                <div class="quick-icon">📱</div>
+                <b>Build App</b>
+                <small class="muted">
+                    Create software
+                </small>
+            </button>
+
+
+            <button
+                class="quick"
+                onclick="openTask('Build Game')"
+            >
+                <div class="quick-icon">🎮</div>
+                <b>Build Game</b>
+                <small class="muted">
+                    Create a game
+                </small>
+            </button>
+
+
+            <button
+                class="quick"
+                onclick="openTask('Security Scan')"
+            >
+                <div class="quick-icon">🛡️</div>
+                <b>Security</b>
+                <small class="muted">
+                    Protect systems
+                </small>
+            </button>
+
+
+            <button
+                class="quick"
+                onclick="openTask('Data Pipeline')"
+            >
+                <div class="quick-icon">🗄️</div>
+                <b>Data</b>
+                <small class="muted">
+                    Build pipelines
+                </small>
+            </button>
+
+
+            <button
+                class="quick"
+                onclick="openAgent('UI/UX Design')"
+            >
+                <div class="quick-icon">🎨</div>
+                <b>UI/UX</b>
+                <small class="muted">
+                    Design interface
+                </small>
+            </button>
+
+
+            <button
+                class="quick"
+                onclick="openAgent('3D Asset')"
+            >
+                <div class="quick-icon">🧊</div>
+                <b>3D Assets</b>
+                <small class="muted">
+                    Create assets
+                </small>
+            </button>
+
+        </div>
+
     </div>
-
-    <br>
-
-    <button class="secondary"
-            onclick="showPage('tasks')">
-        Open Task Center
-    </button>
-</div>
-
-<div class="card">
-
-<div class="card-title">
-    Quick Actions
-</div>
-
-<div class="quick-grid">
-
-<button class="quick"
-onclick="openTask('Build App')">
-<div class="icon">📱</div>
-<b>Build App</b>
-<small class="muted">Create software</small>
-</button>
-
-<button class="quick"
-onclick="openTask('Build Game')">
-<div class="icon">🎮</div>
-<b>Build Game</b>
-<small class="muted">Create a game</small>
-</button>
-
-<button class="quick"
-onclick="openTask('Security Scan')">
-<div class="icon">🛡️</div>
-<b>Security</b>
-<small class="muted">Protect systems</small>
-</button>
-
-<button class="quick"
-onclick="openTask('Data Pipeline')">
-<div class="icon">🗄️</div>
-<b>Data</b>
-<small class="muted">Build pipelines</small>
-</button>
-
-<button class="quick"
-onclick="openAgent('UI/UX Design')">
-<div class="icon">🎨</div>
-<b>UI/UX</b>
-<small class="muted">Design interface</small>
-</button>
-
-<button class="quick"
-onclick="openAgent('3D Asset')">
-<div class="icon">🧊</div>
-<b>3D Assets</b>
-<small class="muted">Create assets</small>
-</button>
-
-</div>
-</div>
 
 </section>
 
 
-<!-- AGENTS -->
+<!-- =========================
+     AGENTS
+========================= -->
 
 <section id="agents" class="page">
 
-<h2>AI Agents</h2>
-<p class="muted" style="margin:7px 0 15px">
-Your digital workforce
-</p>
+    <h2>
+        AI Agents
+    </h2>
 
-<div id="agentList"></div>
+    <p
+        class="muted"
+        style="margin:7px 0 15px"
+    >
+        Your digital workforce
+    </p>
+
+    <div id="agentList"></div>
 
 </section>
 
 
-<!-- PROJECTS -->
+<!-- =========================
+     PROJECTS
+========================= -->
 
 <section id="projects" class="page">
 
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">
+    <div
+        style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:15px"
+    >
 
-<div>
-<h2>Projects</h2>
-<p class="muted">Manage your work</p>
-</div>
+        <div>
 
-<button class="primary"
-onclick="openProjectModal()">
-+ New
-</button>
+            <h2>
+                Projects
+            </h2>
 
-</div>
+            <p class="muted">
+                Manage your work
+            </p>
 
-<div id="projectList"></div>
+        </div>
+
+        <button
+            class="primary"
+            onclick="openProjectModal()"
+        >
+            + New
+        </button>
+
+    </div>
+
+    <div id="projectList"></div>
 
 </section>
 
 
-<!-- TASKS -->
+<!-- =========================
+     TASK CENTER
+========================= -->
 
 <section id="tasks" class="page">
 
-<h2>Task Center</h2>
+    <h2>
+        Task Center
+    </h2>
 
-<p class="muted" style="margin:7px 0 15px">
-Monitor B2's live work
-</p>
+    <p
+        class="muted"
+        style="margin:7px 0 15px"
+    >
+        Monitor B2's live work
+    </p>
 
-<div id="taskList"></div>
+    <div id="taskList"></div>
 
 </section>
 
 
-<!-- WALLET -->
+<!-- =========================
+     WALLET
+========================= -->
 
 <section id="wallet" class="page">
 
-<h2>Wallet</h2>
+    <h2>
+        Wallet
+    </h2>
 
-<div class="card wallet-balance">
+    <div class="card wallet">
 
-<div class="muted">
-Current Balance
-</div>
+        <div class="muted">
+            Current Balance
+        </div>
 
-<div class="credits"
-id="walletCredits">
-3,760
-</div>
+        <div
+            class="wallet-number"
+            id="walletCredits"
+        >
+            3,760
+        </div>
 
-<div class="muted">
-1 Credit = $0.01
-</div>
+        <div class="muted">
+            1 Credit = $0.01
+        </div>
 
-<br>
+        <br>
 
-<button class="primary"
-onclick="showToast('Payment screen will be connected later.')">
-Buy Credits
-</button>
+        <button
+            class="primary"
+            onclick="showToast('Payment system will be connected later.')"
+        >
+            Buy Credits
+        </button>
 
-</div>
+    </div>
 
-<div class="card">
 
-<div class="card-title">
-Credit Packages
-</div>
+    <div class="card">
 
-<div class="packages">
+        <div
+            class="muted"
+            style="margin-bottom:11px"
+        >
+            Credit Packages
+        </div>
 
-<div class="package"
-onclick="buyPackage(100)">
-<b>100</b>
-<span class="muted">$1.00</span>
-</div>
+        <div class="packages">
 
-<div class="package"
-onclick="buyPackage(500)">
-<b>500</b>
-<span class="muted">$5.00</span>
-</div>
+            <div
+                class="package"
+                onclick="selectPackage(100)"
+            >
+                <b>100</b>
+                <span class="muted">
+                    $1.00
+                </span>
+            </div>
 
-<div class="package"
-onclick="buyPackage(1000)">
-<b>1,000</b>
-<span class="muted">$10.00</span>
-</div>
 
-<div class="package"
-onclick="buyPackage(2500)">
-<b>2,500</b>
-<span class="muted">$25.00</span>
-</div>
+            <div
+                class="package"
+                onclick="selectPackage(500)"
+            >
+                <b>500</b>
+                <span class="muted">
+                    $5.00
+                </span>
+            </div>
 
-<div class="package"
-onclick="buyPackage(5000)">
-<b>5,000</b>
-<span class="muted">$50.00</span>
-</div>
 
-<div class="package"
-onclick="buyPackage(10000)">
-<b>10,000</b>
-<span class="muted">$100.00</span>
-</div>
+            <div
+                class="package"
+                onclick="selectPackage(1000)"
+            >
+                <b>1,000</b>
+                <span class="muted">
+                    $10.00
+                </span>
+            </div>
 
-</div>
-</div>
 
-<div class="card">
+            <div
+                class="package"
+                onclick="selectPackage(2500)"
+            >
+                <b>2,500</b>
+                <span class="muted">
+                    $25.00
+                </span>
+            </div>
 
-<div class="card-title">
-Subscription
-</div>
 
-<h3>$5 / month</h3>
+            <div
+                class="package"
+                onclick="selectPackage(5000)"
+            >
+                <b>5,000</b>
+                <span class="muted">
+                    $50.00
+                </span>
+            </div>
 
-<p class="muted" style="margin:8px 0">
-Required for paid B2 work.
-</p>
 
-<button class="primary"
-onclick="showToast('Subscription checkout will be connected later.')">
-Manage Subscription
-</button>
+            <div
+                class="package"
+                onclick="selectPackage(10000)"
+            >
+                <b>10,000</b>
+                <span class="muted">
+                    $100.00
+                </span>
+            </div>
 
-</div>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="muted">
+            Subscription
+        </div>
+
+        <h3 style="margin-top:7px">
+            $5 / month
+        </h3>
+
+        <p
+            class="muted"
+            style="margin:7px 0 13px"
+        >
+            Required for paid B2 work.
+        </p>
+
+        <button
+            class="primary"
+            onclick="showToast('Subscription checkout will be connected later.')"
+        >
+            Manage Subscription
+        </button>
+
+    </div>
 
 </section>
 
 
-<!-- BOTTOM NAV -->
+<!-- =========================
+     BOTTOM NAV
+========================= -->
 
-<div class="bottom-nav">
+<nav class="bottom-nav">
 
-<button class="nav-btn active"
-onclick="showPage('home',this)">
-<div>⌂</div>
-Home
-</button>
-
-<button class="nav-btn"
-onclick="showPage('agents',this)">
-<div>🤖</div>
-Agents
-</button>
-
-<button class="nav-btn"
-onclick="showPage('projects',this)">
-<div>📁</div>
-Projects
-</button>
-
-<button class="nav-btn"
-onclick="showPage('tasks',this)">
-<div>⚙️</div>
-Tasks
-</button>
-
-<button class="nav-btn"
-onclick="showPage('wallet',this)">
-<div>💳</div>
-Wallet
-</button>
-
-</div>
-
-</div>
+    <button
+        class="nav-btn active"
+        onclick="showPage('home',this)"
+    >
+        <div>⌂</div>
+        Home
+    </button>
 
 
-<!-- AGENT MODAL -->
+    <button
+        class="nav-btn"
+        onclick="showPage('agents',this)"
+    >
+        <div>🤖</div>
+        Agents
+    </button>
 
-<div class="modal" id="agentModal">
 
-<div class="modal-box">
+    <button
+        class="nav-btn"
+        onclick="showPage('projects',this)"
+    >
+        <div>📁</div>
+        Projects
+    </button>
 
-<button class="close"
-onclick="closeModal('agentModal')">
-×
-</button>
 
-<div class="detail-icon" id="agentIcon">
-🤖
-</div>
+    <button
+        class="nav-btn"
+        onclick="showPage('tasks',this)"
+    >
+        <div>⚙️</div>
+        Tasks
+    </button>
 
-<h2 id="agentTitle">
-Agent
-</h2>
 
-<p class="muted"
-id="agentDescription"
-style="margin:8px 0 18px">
-Specialist AI worker
-</p>
+    <button
+        class="nav-btn"
+        onclick="showPage('wallet',this)"
+    >
+        <div>💳</div>
+        Wallet
+    </button>
 
-<div class="card">
-
-<div class="feature">
-✓ Understands natural-language tasks
-</div>
-
-<div class="feature">
-✓ Works with other B2 agents
-</div>
-
-<div class="feature">
-✓ Permission controlled
-</div>
-
-<div class="feature">
-✓ Activity recorded in audit logs
-</div>
-
-<div class="feature">
-✓ Credit usage tracked in real time
-</div>
-
-</div>
-
-<button class="primary"
-style="width:100%"
-onclick="createAgentTask()">
-Start Task With This Agent
-</button>
-
-</div>
+</nav>
 
 </div>
 
 
-<!-- PROJECT MODAL -->
+<!-- =========================
+     AGENT MODAL
+========================= -->
 
-<div class="modal" id="projectModal">
+<div
+    class="modal"
+    id="agentModal"
+>
 
-<div class="modal-box">
+    <div class="modal-box">
 
-<button class="close"
-onclick="closeModal('projectModal')">
-×
-</button>
+        <button
+            class="close"
+            onclick="closeModal('agentModal')"
+        >
+            ×
+        </button>
 
-<h2 style="margin-bottom:18px">
-Create Project
-</h2>
+        <div
+            class="detail-icon"
+            id="agentIcon"
+        >
+            🤖
+        </div>
 
-<div class="form-group">
-<label>Project Name</label>
-<input id="projectName"
-placeholder="Example: My New Game">
-</div>
+        <h2 id="agentTitle">
+            Agent
+        </h2>
 
-<div class="form-group">
-<label>Project Type</label>
-
-<select id="projectType">
-<option>App</option>
-<option>Game</option>
-<option>Website</option>
-<option>Software</option>
-<option>Data System</option>
-<option>IoT</option>
-</select>
-
-</div>
-
-<div class="form-group">
-
-<label>Description</label>
-
-<textarea id="projectDescription"
-placeholder="Describe what you want B2 to build..."></textarea>
-
-</div>
-
-<button class="primary"
-style="width:100%"
-onclick="createProject()">
-Create Project
-</button>
-
-</div>
-
-</div>
+        <p
+            class="muted"
+            id="agentDescription"
+            style="margin:7px 0 17px"
+        >
+            Specialist AI worker
+        </p>
 
 
-<!-- TASK MODAL -->
+        <div class="card">
 
-<div class="modal" id="taskModal">
+            <div class="feature">
+                ✓ Understands natural-language tasks
+            </div>
 
-<div class="modal-box">
+            <div class="feature">
+                ✓ Works with other B2 agents
+            </div>
 
-<button class="close"
-onclick="closeModal('taskModal')">
-×
-</button>
+            <div class="feature">
+                ✓ Permission controlled
+            </div>
 
-<h2>
-Create Task
-</h2>
+            <div class="feature">
+                ✓ Activity recorded in audit logs
+            </div>
 
-<p class="muted"
-style="margin:7px 0 18px">
-B2 will select the required agents.
-</p>
+            <div class="feature">
+                ✓ Resource usage tracked
+            </div>
 
-<div class="form-group">
+        </div>
 
-<label>Task</label>
 
-<textarea id="taskDescription"
-placeholder="Example: Build a mobile game with login and leaderboard..."></textarea>
+        <button
+            class="primary"
+            style="width:100%"
+            onclick="createAgentTask()"
+        >
+            Start Task With This Agent
+        </button>
+
+    </div>
 
 </div>
 
-<div class="form-group">
 
-<label>Permission Level</label>
+<!-- =========================
+     PROJECT MODAL
+========================= -->
 
-<select id="permissionLevel">
-<option>Recommend</option>
-<option>Execute</option>
-<option>Autonomous</option>
-</select>
+<div
+    class="modal"
+    id="projectModal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeModal('projectModal')"
+        >
+            ×
+        </button>
+
+        <h2 style="margin-bottom:18px">
+            Create Project
+        </h2>
+
+
+        <div class="form-group">
+
+            <label>
+                Project Name
+            </label>
+
+            <input
+                id="projectName"
+                placeholder="Example: My New Game"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Project Type
+            </label>
+
+            <select id="projectType">
+
+                <option>App</option>
+                <option>Game</option>
+                <option>Website</option>
+                <option>Software</option>
+                <option>Data System</option>
+                <option>IoT</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Description
+            </label>
+
+            <textarea
+                id="projectDescription"
+                placeholder="Describe what you want B2 to build..."
+            ></textarea>
+
+        </div>
+
+
+        <button
+            class="primary"
+            style="width:100%"
+            onclick="createProject()"
+        >
+            Create Project
+        </button>
+
+    </div>
 
 </div>
 
-<div class="card">
 
-<div class="muted">
-Estimated resource usage
-</div>
+<!-- =========================
+     TASK MODAL
+========================= -->
 
-<h3 style="margin-top:8px">
-Calculated by B2
-</h3>
+<div
+    class="modal"
+    id="taskModal"
+>
 
-<p class="muted">
-Actual cost will be tracked while the task runs.
-</p>
+    <div class="modal-box">
 
-</div>
+        <button
+            class="close"
+            onclick="closeModal('taskModal')"
+        >
+            ×
+        </button>
 
-<button class="primary"
-style="width:100%"
-onclick="startNewTask()">
-Start Task
-</button>
+        <h2>
+            Create Task
+        </h2>
 
-</div>
+        <p
+            class="muted"
+            style="margin:7px 0 18px"
+        >
+            B2 will select the required agents.
+        </p>
+
+
+        <div class="form-group">
+
+            <label>
+                Task
+            </label>
+
+            <textarea
+                id="taskDescription"
+                placeholder="Example: Build a mobile game with login and leaderboard..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Permission Level
+            </label>
+
+            <select id="permissionLevel">
+
+                <option>Recommend</option>
+                <option>Execute</option>
+                <option>Autonomous</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="muted">
+                Billing
+            </div>
+
+            <h3 style="margin-top:7px">
+                Resource-based charging
+            </h3>
+
+            <p
+                class="muted"
+                style="margin-top:6px"
+            >
+                Credits are charged from resource usage events,
+                not from a fixed per-second rate.
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary"
+            style="width:100%"
+            onclick="startNewTask()"
+        >
+            Start Task
+        </button>
+
+    </div>
 
 </div>
 
 
 <!-- TOAST -->
 
-<div class="toast" id="toast">
-B2
+<div
+    class="toast"
+    id="toast"
+>
+    B2
 </div>
 
 
 <script>
 
-/* =========================
-   GLOBAL STATE
-========================= */
+/* =====================================================
+   B2 STATE
+===================================================== */
 
 let credits = 3760;
 
 let currentAgent = "";
 
-let taskRunning = true;
+let currentTask = null;
 
-let taskUsed = 1240;
+let taskRunning = false;
 
-let taskCost = 12.40;
+let taskProgressTimer = null;
 
-let progress = 64;
+let resourceTimer = null;
 
-let taskTimer;
+let taskUsed = 0;
+
+let taskCost = 0;
+
+let progress = 0;
+
+let taskEstimatedCredits = 500;
+
+let taskConsumedCredits = 0;
 
 
-/* =========================
-   AGENT DATA
-========================= */
+/* =====================================================
+   AGENTS
+===================================================== */
 
 const agents = [
 
-{
-name:"Coding & Development",
-icon:"💻",
-desc:"Build, modify, debug and maintain software."
-},
+    {
+        name:"Coding & Development",
+        icon:"💻",
+        desc:"Build, modify, debug and maintain software."
+    },
 
-{
-name:"Security Management",
-icon:"🛡️",
-desc:"Monitor systems and detect security problems."
-},
+    {
+        name:"Security Management",
+        icon:"🛡️",
+        desc:"Monitor authorized systems and detect security problems."
+    },
 
-{
-name:"Data Warehousing",
-icon:"🗄️",
-desc:"Create pipelines, schemas and data systems."
-},
+    {
+        name:"Data Warehousing",
+        icon:"🗄️",
+        desc:"Create pipelines, schemas and data systems."
+    },
 
-{
-name:"UI/UX Design",
-icon:"🎨",
-desc:"Design interfaces, user flows and experiences."
-},
+    {
+        name:"UI/UX Design",
+        icon:"🎨",
+        desc:"Design interfaces, user flows and experiences."
+    },
 
-{
-name:"IoT",
-icon:"📡",
-desc:"Manage authorized devices, sensors and telemetry."
-},
+    {
+        name:"IoT",
+        icon:"📡",
+        desc:"Manage authorized devices and telemetry."
+    },
 
-{
-name:"QA & Testing",
-icon:"🧪",
-desc:"Test software and detect bugs."
-},
+    {
+        name:"QA & Testing",
+        icon:"🧪",
+        desc:"Test software and detect bugs."
+    },
 
-{
-name:"Game Management",
-icon:"🎮",
-desc:"Monitor and manage games."
-},
+    {
+        name:"Game Management",
+        icon:"🎮",
+        desc:"Monitor and manage games."
+    },
 
-{
-name:"3D Asset",
-icon:"🧊",
-desc:"Create and optimize 3D game assets."
-},
+    {
+        name:"3D Asset",
+        icon:"🧊",
+        desc:"Create and optimize 3D assets."
+    },
 
-{
-name:"Video Creator",
-icon:"🎬",
-desc:"Create scripts, storyboards and video workflows."
-},
+    {
+        name:"Video Creator",
+        icon:"🎬",
+        desc:"Create scripts, storyboards and video workflows."
+    },
 
-{
-name:"ASO",
-icon:"📈",
-desc:"Optimize app store listings and discoverability."
-},
+    {
+        name:"ASO",
+        icon:"📈",
+        desc:"Optimize app store listings."
+    },
 
-{
-name:"Marketing",
-icon:"📣",
-desc:"Plan campaigns and promotional content."
-},
+    {
+        name:"Marketing",
+        icon:"📣",
+        desc:"Plan campaigns and promotional content."
+    },
 
-{
-name:"Customer Support",
-icon:"💬",
-desc:"Manage questions, tickets and support."
-},
+    {
+        name:"Customer Support",
+        icon:"💬",
+        desc:"Manage questions, tickets and support."
+    },
 
-{
-name:"DevOps / Cloud",
-icon:"☁️",
-desc:"Manage deployments, infrastructure and monitoring."
-},
+    {
+        name:"DevOps / Cloud",
+        icon:"☁️",
+        desc:"Manage deployment and infrastructure."
+    },
 
-{
-name:"Database",
-icon:"🗃️",
-desc:"Monitor and maintain databases."
-},
+    {
+        name:"Database",
+        icon:"🗃️",
+        desc:"Monitor and maintain databases."
+    },
 
-{
-name:"Localization",
-icon:"🌍",
-desc:"Translate and localize products."
-},
+    {
+        name:"Localization",
+        icon:"🌍",
+        desc:"Translate and localize products."
+    },
 
-{
-name:"Analytics",
-icon:"📊",
-desc:"Analyze users, revenue and system data."
-},
+    {
+        name:"Analytics",
+        icon:"📊",
+        desc:"Analyze users, revenue and system data."
+    },
 
-{
-name:"Business",
-icon:"💼",
-desc:"Manage business operations and workflows."
-},
+    {
+        name:"Business",
+        icon:"💼",
+        desc:"Manage business operations."
+    },
 
-{
-name:"Project Manager",
-icon:"📋",
-desc:"Break projects into tasks and coordinate agents."
-},
+    {
+        name:"Project Manager",
+        icon:"📋",
+        desc:"Break projects into tasks and coordinate agents."
+    },
 
-{
-name:"Communication",
-icon:"✉️",
-desc:"Handle approved communications and notifications."
-},
+    {
+        name:"Communication",
+        icon:"✉️",
+        desc:"Handle approved communications."
+    },
 
-{
-name:"Competitor Research",
-icon:"🔎",
-desc:"Analyze competitors and market information."
-},
+    {
+        name:"Competitor Research",
+        icon:"🔎",
+        desc:"Analyze competitors and market information."
+    },
 
-{
-name:"Knowledge",
-icon:"📚",
-desc:"Work with approved company knowledge."
-},
+    {
+        name:"Knowledge",
+        icon:"📚",
+        desc:"Work with approved company knowledge."
+    },
 
-{
-name:"Brand",
-icon:"✨",
-desc:"Manage brand identity and visual direction."
-},
+    {
+        name:"Brand",
+        icon:"✨",
+        desc:"Manage brand identity."
+    },
 
-{
-name:"Voice",
-icon:"🎙️",
-desc:"Handle voice commands and responses."
-},
+    {
+        name:"Voice",
+        icon:"🎙️",
+        desc:"Handle voice commands and responses."
+    },
 
-{
-name:"Device",
-icon:"📱",
-desc:"Monitor authorized connected devices."
-}
+    {
+        name:"Device",
+        icon:"📱",
+        desc:"Monitor authorized connected devices."
+    }
 
 ];
 
 
-/* =========================
-   AGENT LIST
-========================= */
-
-function loadAgents(){
-
-const list =
-document.getElementById("agentList");
-
-list.innerHTML = "";
-
-agents.forEach((agent,index)=>{
-
-list.innerHTML += `
-
-<div class="agent"
-onclick="openAgent('${agent.name}')">
-
-<div class="agent-icon">
-${agent.icon}
-</div>
-
-<div class="agent-info">
-
-<b>${agent.name}</b>
-
-<small>
-${agent.desc}
-</small>
-
-</div>
-
-<div>›</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-/* =========================
-   PROJECT DATA
-========================= */
+/* =====================================================
+   PROJECTS
+===================================================== */
 
 let projects = [
 
-{
-name:"My New Game",
-type:"Game",
-progress:64,
-status:"Building"
-},
+    {
+        name:"My New Game",
+        type:"Game",
+        progress:0,
+        status:"Planning"
+    },
 
-{
-name:"Business App",
-type:"App",
-progress:100,
-status:"Completed"
-}
+    {
+        name:"Business App",
+        type:"App",
+        progress:100,
+        status:"Completed"
+    }
 
 ];
 
 
+/* =====================================================
+   AGENT LIST
+===================================================== */
+
+function loadAgents(){
+
+    const list =
+        document.getElementById("agentList");
+
+    list.innerHTML = "";
+
+    agents.forEach(agent => {
+
+        list.innerHTML += `
+
+        <div
+            class="agent"
+            onclick="openAgent('${agent.name}')"
+        >
+
+            <div class="agent-icon">
+                ${agent.icon}
+            </div>
+
+            <div class="agent-info">
+
+                <b>
+                    ${agent.name}
+                </b>
+
+                <small>
+                    ${agent.desc}
+                </small>
+
+            </div>
+
+            <div>
+                ›
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+/* =====================================================
+   PROJECT LIST
+===================================================== */
+
 function loadProjects(){
 
-const list =
-document.getElementById("projectList");
+    const list =
+        document.getElementById("projectList");
 
-list.innerHTML = "";
+    list.innerHTML = "";
 
-projects.forEach(project=>{
+    projects.forEach(project => {
 
-list.innerHTML += `
+        list.innerHTML += `
 
-<div class="project">
+        <div class="project">
 
-<div class="project-head">
+            <div class="project-top">
 
-<div>
-<b>${project.name}</b>
+                <div>
 
-<div class="muted"
-style="margin-top:5px">
-${project.type}
-</div>
+                    <b>
+                        ${project.name}
+                    </b>
 
-</div>
+                    <div
+                        class="muted"
+                        style="margin-top:5px"
+                    >
+                        ${project.type}
+                    </div>
 
-<span class="badge">
-${project.status}
-</span>
+                </div>
 
-</div>
+                <span class="badge">
+                    ${project.status}
+                </span>
 
-<div class="progress">
-
-<div style="width:${project.progress}%"></div>
-
-</div>
-
-<div class="muted">
-${project.progress}% complete
-</div>
-
-</div>
-
-`;
-
-});
-
-}
+            </div>
 
 
-/* =========================
-   TASK LIST
-========================= */
+            <div class="progress">
 
-function loadTasks(){
+                <div
+                    class="progress-bar"
+                    style="width:${project.progress}%"
+                ></div>
 
-const list =
-document.getElementById("taskList");
+            </div>
 
-list.innerHTML = `
+            <div class="muted">
+                ${project.progress}% complete
+            </div>
 
-<div class="task">
+        </div>
 
-<div class="task-head">
+        `;
 
-<div>
-<b id="taskTitle">
-Creating Game
-</b>
-
-<div class="muted">
-Coding Agent + QA Agent
-</div>
-
-</div>
-
-<div class="live">
-● LIVE
-</div>
-
-</div>
-
-<div class="progress">
-
-<div id="taskProgress"
-style="width:${progress}%">
-</div>
-
-</div>
-
-<div class="cost-grid">
-
-<div class="cost-box">
-
-<span>BEFORE</span>
-
-<b>5,000</b>
-
-</div>
-
-<div class="cost-box">
-
-<span>USED</span>
-
-<b id="taskUsed">
-${taskUsed.toLocaleString()}
-</b>
-
-</div>
-
-<div class="cost-box">
-
-<span>BALANCE</span>
-
-<b id="taskBalance">
-${credits.toLocaleString()}
-</b>
-
-</div>
-
-</div>
-
-<br>
-
-<div class="cost-box">
-
-<span>LIVE COST</span>
-
-<b id="taskLiveCost">
-$${taskCost.toFixed(2)}
-</b>
-
-</div>
-
-<br>
-
-<button class="secondary"
-onclick="pauseTask()">
-Pause
-</button>
-
-<button class="secondary"
-onclick="stopTask()">
-Stop
-</button>
-
-</div>
-
-`;
+    });
 
 }
 
 
-/* =========================
+/* =====================================================
    NAVIGATION
-========================= */
+===================================================== */
 
 function showPage(id,button){
 
-document
-.querySelectorAll(".page")
-.forEach(page=>{
-page.classList.remove("active");
-});
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+            page.classList.remove("active");
+        });
 
-document
-.getElementById(id)
-.classList.add("active");
+    const page =
+        document.getElementById(id);
 
-document
-.querySelectorAll(".nav-btn")
-.forEach(btn=>{
-btn.classList.remove("active");
-});
+    if(page){
+        page.classList.add("active");
+    }
 
-if(button){
-button.classList.add("active");
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+
+    if(button){
+        button.classList.add("active");
+    }
+
+
+    window.scrollTo(0,0);
+
 }
 
-window.scrollTo(0,0);
 
-}
-
-
-/* =========================
+/* =====================================================
    AGENT DETAIL
-========================= */
+===================================================== */
 
 function openAgent(name){
 
-const agent =
-agents.find(a=>a.name===name);
+    const agent =
+        agents.find(a => a.name === name);
 
-if(!agent)return;
+    if(!agent) return;
 
-currentAgent = name;
+    currentAgent = name;
 
-document
-.getElementById("agentIcon")
-.innerText = agent.icon;
+    document
+        .getElementById("agentIcon")
+        .innerText = agent.icon;
 
-document
-.getElementById("agentTitle")
-.innerText = agent.name;
+    document
+        .getElementById("agentTitle")
+        .innerText = agent.name;
 
-document
-.getElementById("agentDescription")
-.innerText = agent.desc;
+    document
+        .getElementById("agentDescription")
+        .innerText = agent.desc;
 
-document
-.getElementById("agentModal")
-.classList.add("active");
+    document
+        .getElementById("agentModal")
+        .classList.add("active");
 
 }
 
 
 function createAgentTask(){
 
-closeModal("agentModal");
+    closeModal("agentModal");
 
-document
-.getElementById("taskDescription")
-.value =
-"Work using " + currentAgent + " agent.";
+    document
+        .getElementById("taskDescription")
+        .value =
+        "Work using " +
+        currentAgent +
+        " agent.";
 
-document
-.getElementById("taskModal")
-.classList.add("active");
+    document
+        .getElementById("taskModal")
+        .classList.add("active");
 
 }
 
 
-/* =========================
+/* =====================================================
    PROJECT
-========================= */
+===================================================== */
 
 function openProjectModal(){
 
-document
-.getElementById("projectModal")
-.classList.add("active");
+    document
+        .getElementById("projectModal")
+        .classList.add("active");
 
 }
 
 
 function createProject(){
 
-const name =
-document.getElementById("projectName").value.trim();
+    const name =
+        document
+        .getElementById("projectName")
+        .value
+        .trim();
 
-const type =
-document.getElementById("projectType").value;
+    const type =
+        document
+        .getElementById("projectType")
+        .value;
 
-if(!name){
+    if(!name){
 
-showToast("Enter a project name.");
+        showToast(
+            "Enter a project name."
+        );
 
-return;
+        return;
+
+    }
+
+
+    projects.unshift({
+
+        name:name,
+
+        type:type,
+
+        progress:0,
+
+        status:"Planning"
+
+    });
+
+
+    loadProjects();
+
+    closeModal("projectModal");
+
+    document
+        .getElementById("projectName")
+        .value = "";
+
+    document
+        .getElementById("projectDescription")
+        .value = "";
+
+    showToast(
+        "Project created."
+    );
 
 }
 
-projects.unshift({
 
-name:name,
-
-type:type,
-
-progress:0,
-
-status:"Planning"
-
-});
-
-loadProjects();
-
-closeModal("projectModal");
-
-showToast("Project created.");
-
-}
-
-
-/* =========================
-   TASK
-========================= */
+/* =====================================================
+   TASK CREATION
+===================================================== */
 
 function openTask(name){
 
-document
-.getElementById("taskDescription")
-.value =
-name;
+    document
+        .getElementById("taskDescription")
+        .value = name;
 
-document
-.getElementById("taskModal")
-.classList.add("active");
+    document
+        .getElementById("taskModal")
+        .classList.add("active");
+
+}
+
+
+function runCommand(){
+
+    const input =
+        document
+        .getElementById("commandInput")
+        .value
+        .trim();
+
+    if(!input){
+
+        showToast(
+            "Tell B2 what you want."
+        );
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("taskDescription")
+        .value = input;
+
+    document
+        .getElementById("taskModal")
+        .classList.add("active");
 
 }
 
 
 function startNewTask(){
 
-const description =
-document
-.getElementById("taskDescription")
-.value.trim();
+    const description =
+        document
+        .getElementById("taskDescription")
+        .value
+        .trim();
 
-if(!description){
 
-showToast("Describe the task first.");
-
-return;
-
-}
-
-closeModal("taskModal");
-
-startLiveTask(description);
-
-showPage("tasks");
-
-showToast("B2 task started.");
-
-}
-
-
-/* =========================
-   LIVE TASK
-   RESOURCE USAGE SIMULATION
-========================= */
-
-let taskEstimatedCredits = 500;
-let taskConsumedCredits = 0;
-let taskRunning = false;
-let taskProgressTimer = null;
-let resourceTimer = null;
-
-
-/* =========================
-   START TASK
-========================= */
-
-function startLiveTask(name){
-
-    clearInterval(taskProgressTimer);
-    clearInterval(resourceTimer);
-
-    taskRunning = true;
-
-    taskUsed = 0;
-    taskCost = 0;
-    progress = 0;
-
-    taskConsumedCredits = 0;
-
-    /*
-      Demo estimated cost:
-      500 Credits = $5.00
-    */
-
-    taskEstimatedCredits = 500;
-
-    document
-        .getElementById("taskTitle")
-        .innerText = name;
-
-
-    /*
-      --------------------------------
-      TASK PROGRESS
-      --------------------------------
-
-      Progress is only a visual simulation.
-      It does NOT directly charge credits.
-    */
-
-    taskProgressTimer = setInterval(()=>{
-
-        if(!taskRunning) return;
-
-        if(progress < 100){
-
-            progress += 1;
-
-            updateUI();
-
-        }
-
-        if(progress >= 100){
-
-            clearInterval(taskProgressTimer);
-            clearInterval(resourceTimer);
-
-            taskRunning = false;
-
-            showToast(
-                "Task completed successfully."
-            );
-
-        }
-
-    },1000);
-
-
-    /*
-      --------------------------------
-      RESOURCE USAGE EVENTS
-      --------------------------------
-
-      Credits are charged only when
-      a simulated resource event happens.
-
-      Example resources:
-      AI
-      API
-      Server
-      Database
-      Storage
-      GPU
-    */
-
-    resourceTimer = setInterval(()=>{
-
-        if(!taskRunning) return;
-
-        if(credits <= 0){
-
-            credits = 0;
-
-            taskRunning = false;
-
-            clearInterval(taskProgressTimer);
-            clearInterval(resourceTimer);
-
-            updateUI();
-
-            showToast(
-                "Credits exhausted. Task stopped."
-            );
-
-            return;
-        }
-
-
-        /*
-          Simulated resource event.
-
-          Each event consumes a small amount.
-        */
-
-        const resourceEvents = [
-            {
-                name:"AI",
-                credits:5
-            },
-            {
-                name:"API",
-                credits:3
-            },
-            {
-                name:"Server",
-                credits:4
-            },
-            {
-                name:"Database",
-                credits:2
-            },
-            {
-                name:"Storage",
-                credits:1
-            }
-        ];
-
-
-        /*
-          Select one resource event.
-        */
-
-        const event =
-            resourceEvents[
-                Math.floor(
-                    Math.random() *
-                    resourceEvents.length
-                )
-            ];
-
-
-        /*
-          Do not exceed estimated task cost.
-        */
-
-        const remainingEstimated =
-            taskEstimatedCredits -
-            taskConsumedCredits;
-
-
-        if(remainingEstimated <= 0){
-
-            clearInterval(resourceTimer);
-
-            return;
-
-        }
-
-
-        /*
-          Actual charge for this event.
-        */
-
-        const actualUsage =
-            Math.min(
-                event.credits,
-                remainingEstimated,
-                credits
-            );
-
-
-        if(actualUsage <= 0){
-
-            return;
-
-        }
-
-
-        /*
-          Deduct Credits.
-        */
-
-        credits -= actualUsage;
-
-        taskUsed += actualUsage;
-
-        taskConsumedCredits += actualUsage;
-
-
-        /*
-          USD cost.
-
-          1 Credit = $0.01
-        */
-
-        taskCost =
-            taskUsed * 0.01;
-
-
-        updateUI();
-
-
-    },3000);
-
-}
-
-
-/* =========================
-   PAUSE TASK
-========================= */
-
-function pauseTask(){
-
-    taskRunning = !taskRunning;
-
-    if(taskRunning){
+    if(!description){
 
         showToast(
-            "Task resumed."
+            "Describe the task first."
         );
 
-    }else{
-
-        showToast(
-            "Task paused."
-        );
+        return;
 
     }
 
-}
 
+    closeModal("taskModal");
 
-/* =========================
-   STOP TASK
-========================= */
+    startLiveTask(description);
 
-function stopTask(){
-
-    taskRunning = false;
-
-    clearInterval(taskProgressTimer);
-    clearInterval(resourceTimer);
+    showPage("tasks");
 
     showToast(
-        "Task stopped."
+        "B2 task started."
     );
 
 }
 
 
-/* =========================
+/* =====================================================
+   TASK CENTER
+===================================================== */
+
+function loadTaskCenter(){
+
+    const list =
+        document.getElementById("taskList");
+
+
+    if(!currentTask){
+
+        list.innerHTML = `
+
+        <div class="card">
+
+            <div style="font-size:30px">
+                ⚙️
+            </div>
+
+            <h3 style="margin:10px 0 6px">
+                No active task
+            </h3>
+
+            <p class="muted">
+                Give B2 a command to start a task.
+            </p>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const statusClass =
+        taskRunning
+        ? "live"
+        : currentTask.status === "Paused"
+        ? "paused"
+        : "stopped";
+
+
+    const statusText =
+        taskRunning
+        ? "● LIVE"
+        : "● " + currentTask.status;
+
+
+    list.innerHTML = `
+
+    <div class="task">
+
+        <div class="task-top">
+
+            <div>
+
+                <b id="taskTitle">
+                    ${currentTask.name}
+                </b>
+
+                <div
+                    class="muted"
+                    style="margin-top:5px"
+                >
+                    Resource-based task
+                </div>
+
+            </div>
+
+            <div
+                id="taskStatus"
+                class="${statusClass}"
+            >
+                ${statusText}
+            </div>
+
+        </div>
+
+
+        <div class="progress">
+
+            <div
+                id="taskProgress"
+                class="progress-bar"
+                style="width:${progress}%"
+            ></div>
+
+        </div>
+
+
+        <div
+            class="muted"
+            id="progressText"
+        >
+            ${progress}% complete
+        </div>
+
+
+        <div class="cost-grid">
+
+            <div class="cost-box">
+
+                <span>
+                    ESTIMATED
+                </span>
+
+                <b>
+                    ${taskEstimatedCredits}
+                </b>
+
+            </div>
+
+
+            <div class="cost-box">
+
+                <span>
+                    USED
+                </span>
+
+                <b id="taskUsed">
+                    ${taskUsed}
+                </b>
+
+            </div>
+
+
+            <div class="cost-box">
+
+                <span>
+                    BALANCE
+                </span>
+
+                <b id="taskBalance">
+                    ${credits.toLocaleString()}
+                </b>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="cost-box"
+            style="margin-top:9px"
+        >
+
+            <span>
+                LIVE COST
+            </span>
+
+            <b id="taskLiveCost">
+                $${taskCost.toFixed(2)}
+            </b>
+
+        </div>
+
+
+        <div class="resource">
+
+            <div class="muted">
+                Resource Usage
+            </div>
+
+            <div class="resource-row">
+                <span>AI</span>
+                <b id="resourceAI">0</b>
+            </div>
+
+            <div class="resource-row">
+                <span>API</span>
+                <b id="resourceAPI">0</b>
+            </div>
+
+            <div class="resource-row">
+                <span>Server</span>
+                <b id="resourceServer">0</b>
+            </div>
+
+            <div class="resource-row">
+                <span>Database</span>
+                <b id="resourceDatabase">0</b>
+            </div>
+
+            <div class="resource-row">
+                <span>Storage</span>
+                <b id="resourceStorage">0</b>
+            </div>
+
+        </div>
+
+
+        <div style="margin-top:13px">
+
+            <button
+                class="secondary"
+                onclick="pauseTask()"
+            >
+                Pause / Resume
+            </button>
+
+            <button
+                class="danger"
+                onclick="stopTask()"
+            >
+                Stop
+            </button>
+
+        </div>
+
+    </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   RESOURCE USAGE
+===================================================== */
+
+let resourceUsage = {
+
+    AI:0,
+
+    API:0,
+
+    Server:0,
+
+    Database:0,
+
+    Storage:0
+
+};
+
+
+/* =====================================================
+   START LIVE TASK
+===================================================== */
+
+function startLiveTask(name){
+
+    clearInterval(taskProgressTimer);
+
+    clearInterval(resourceTimer);
+
+
+    taskRunning = true;
+
+
+    taskUsed = 0;
+
+    taskCost = 0;
+
+    progress = 0;
+
+    taskConsumedCredits = 0;
+
+
+    /*
+       Demo estimated cost:
+       500 Credits = $5.00
+    */
+
+    taskEstimatedCredits = 500;
+
+
+    resourceUsage = {
+
+        AI:0,
+
+        API:0,
+
+        Server:0,
+
+        Database:0,
+
+        Storage:0
+
+    };
+
+
+    currentTask = {
+
+        name:name,
+
+        status:"Running"
+
+    };
+
+
+    loadTaskCenter();
+
+    updateUI();
+
+
+    /*
+       ----------------------------------
+       PROGRESS
+       ----------------------------------
+
+       Progress is visual only.
+
+       It does NOT automatically charge
+       Credits.
+    */
+
+    taskProgressTimer =
+        setInterval(() => {
+
+            if(!taskRunning){
+
+                return;
+
+            }
+
+
+            if(progress < 100){
+
+                progress += 1;
+
+                updateUI();
+
+            }
+
+
+            if(progress >= 100){
+
+                clearInterval(taskProgressTimer);
+
+                clearInterval(resourceTimer);
+
+                taskRunning = false;
+
+                currentTask.status =
+                    "Completed";
+
+                updateUI();
+
+                showToast(
+                    "Task completed successfully."
+                );
+
+            }
+
+        },1000);
+
+
+    /*
+       ----------------------------------
+       RESOURCE EVENT
+       ----------------------------------
+
+       Every 3 seconds a simulated
+       resource event can happen.
+
+       This is NOT a time-based charge.
+
+       The timer only simulates when a
+       resource is used.
+    */
+
+    resourceTimer =
+        setInterval(() => {
+
+            if(!taskRunning){
+
+                return;
+
+            }
+
+
+            if(credits <= 0){
+
+                credits = 0;
+
+                taskRunning = false;
+
+                currentTask.status =
+                    "Stopped";
+
+                clearInterval(taskProgressTimer);
+
+                clearInterval(resourceTimer);
+
+                updateUI();
+
+                showToast(
+                    "Credits exhausted. Task stopped."
+                );
+
+                return;
+
+            }
+
+
+            /*
+               Resource event costs.
+
+               These are Demo values only.
+            */
+
+            const resourceEvents = [
+
+                {
+                    name:"AI",
+                    credits:5
+                },
+
+                {
+                    name:"API",
+                    credits:3
+                },
+
+                {
+                    name:"Server",
+                    credits:4
+                },
+
+                {
+                    name:"Database",
+                    credits:2
+                },
+
+                {
+                    name:"Storage",
+                    credits:1
+                }
+
+            ];
+
+
+            const event =
+                resourceEvents[
+                    Math.floor(
+                        Math.random() *
+                        resourceEvents.length
+                    )
+                ];
+
+
+            const remaining =
+                taskEstimatedCredits -
+                taskConsumedCredits;
+
+
+            if(remaining <= 0){
+
+                clearInterval(resourceTimer);
+
+                return;
+
+            }
+
+
+            const actualUsage =
+                Math.min(
+                    event.credits,
+                    remaining,
+                    credits
+                );
+
+
+            if(actualUsage <= 0){
+
+                return;
+
+            }
+
+
+            /*
+               Deduct Credits
+            */
+
+            credits -= actualUsage;
+
+            taskUsed += actualUsage;
+
+            taskConsumedCredits += actualUsage;
+
+
+            /*
+               Store resource usage
+            */
+
+            resourceUsage[event.name] +=
+                actualUsage;
+
+
+            /*
+               1 Credit = $0.01
+            */
+
+            taskCost =
+                taskUsed * 0.01;
+
+
+            updateUI();
+
+
+        },3000);
+
+}
+
+
+/* =====================================================
    UPDATE UI
-========================= */
+===================================================== */
 
 function updateUI(){
 
     const wallet =
         document.getElementById("walletCredits");
 
-    const home =
+    const homeCredits =
         document.getElementById("homeCredits");
-
-    const used =
-        document.getElementById("taskUsed");
-
-    const balance =
-        document.getElementById("taskBalance");
-
-    const liveCost =
-        document.getElementById("taskLiveCost");
 
     const homeCost =
         document.getElementById("homeCost");
 
-    const taskProgress =
-        document.getElementById("taskProgress");
-
     const homeProgress =
         document.getElementById("homeProgress");
+
+    const homeTaskName =
+        document.getElementById("homeTaskName");
+
+    const activeTaskCount =
+        document.getElementById("activeTaskCount");
 
 
     if(wallet){
@@ -1879,35 +2417,10 @@ function updateUI(){
     }
 
 
-    if(home){
+    if(homeCredits){
 
-        home.innerText =
+        homeCredits.innerText =
             credits.toLocaleString();
-
-    }
-
-
-    if(used){
-
-        used.innerText =
-            taskUsed.toLocaleString();
-
-    }
-
-
-    if(balance){
-
-        balance.innerText =
-            credits.toLocaleString();
-
-    }
-
-
-    if(liveCost){
-
-        liveCost.innerText =
-            "$" +
-            taskCost.toFixed(2);
 
     }
 
@@ -1915,16 +2428,7 @@ function updateUI(){
     if(homeCost){
 
         homeCost.innerText =
-            "$" +
-            taskCost.toFixed(2);
-
-    }
-
-
-    if(taskProgress){
-
-        taskProgress.style.width =
-            progress + "%";
+            "$" + taskCost.toFixed(2);
 
     }
 
@@ -1936,131 +2440,340 @@ function updateUI(){
 
     }
 
+
+    if(homeTaskName){
+
+        homeTaskName.innerText =
+            currentTask
+            ? currentTask.name
+            : "No active task";
+
+    }
+
+
+    if(activeTaskCount){
+
+        activeTaskCount.innerText =
+            taskRunning ? "1" : "0";
+
+    }
+
+
+    /*
+       Task Center
+    */
+
+    const taskProgress =
+        document.getElementById("taskProgress");
+
+    const progressText =
+        document.getElementById("progressText");
+
+    const taskUsedElement =
+        document.getElementById("taskUsed");
+
+    const taskBalance =
+        document.getElementById("taskBalance");
+
+    const taskLiveCost =
+        document.getElementById("taskLiveCost");
+
+    const taskStatus =
+        document.getElementById("taskStatus");
+
+
+    if(taskProgress){
+
+        taskProgress.style.width =
+            progress + "%";
+
+    }
+
+
+    if(progressText){
+
+        progressText.innerText =
+            progress + "% complete";
+
+    }
+
+
+    if(taskUsedElement){
+
+        taskUsedElement.innerText =
+            taskUsed.toLocaleString();
+
+    }
+
+
+    if(taskBalance){
+
+        taskBalance.innerText =
+            credits.toLocaleString();
+
+    }
+
+
+    if(taskLiveCost){
+
+        taskLiveCost.innerText =
+            "$" + taskCost.toFixed(2);
+
+    }
+
+
+    if(taskStatus && currentTask){
+
+        if(taskRunning){
+
+            taskStatus.className =
+                "live";
+
+            taskStatus.innerText =
+                "● LIVE";
+
+        }else if(
+            currentTask.status === "Paused"
+        ){
+
+            taskStatus.className =
+                "paused";
+
+            taskStatus.innerText =
+                "● PAUSED";
+
+        }else{
+
+            taskStatus.className =
+                "stopped";
+
+            taskStatus.innerText =
+                "● " +
+                currentTask.status;
+
+        }
+
+    }
+
+
+    /*
+       Resource values
+    */
+
+    const ai =
+        document.getElementById("resourceAI");
+
+    const api =
+        document.getElementById("resourceAPI");
+
+    const server =
+        document.getElementById("resourceServer");
+
+    const database =
+        document.getElementById("resourceDatabase");
+
+    const storage =
+        document.getElementById("resourceStorage");
+
+
+    if(ai){
+
+        ai.innerText =
+            resourceUsage.AI;
+
+    }
+
+
+    if(api){
+
+        api.innerText =
+            resourceUsage.API;
+
+    }
+
+
+    if(server){
+
+        server.innerText =
+            resourceUsage.Server;
+
+    }
+
+
+    if(database){
+
+        database.innerText =
+            resourceUsage.Database;
+
+    }
+
+
+    if(storage){
+
+        storage.innerText =
+            resourceUsage.Storage;
+
+    }
+
 }
 
 
-/* =========================
-   PAUSE
-========================= */
+/* =====================================================
+   PAUSE / RESUME
+===================================================== */
 
 function pauseTask(){
 
-taskRunning = !taskRunning;
+    if(!currentTask){
 
-showToast(
-taskRunning
-? "Task resumed."
-: "Task paused."
-);
+        return;
+
+    }
+
+
+    if(!taskRunning){
+
+        if(
+            currentTask.status ===
+            "Stopped" ||
+            currentTask.status ===
+            "Completed"
+        ){
+
+            showToast(
+                "This task cannot be resumed."
+            );
+
+            return;
+
+        }
+
+        taskRunning = true;
+
+        currentTask.status =
+            "Running";
+
+        showToast(
+            "Task resumed."
+        );
+
+    }else{
+
+        taskRunning = false;
+
+        currentTask.status =
+            "Paused";
+
+        showToast(
+            "Task paused."
+        );
+
+    }
+
+
+    updateUI();
 
 }
 
 
-/* =========================
-   STOP
-========================= */
+/* =====================================================
+   STOP TASK
+===================================================== */
 
 function stopTask(){
 
-taskRunning = false;
+    if(!currentTask){
 
-clearInterval(taskTimer);
+        return;
 
-showToast("Task stopped.");
-
-}
+    }
 
 
-/* =========================
-   COMMAND
-========================= */
+    taskRunning = false;
 
-function runCommand(){
+    currentTask.status =
+        "Stopped";
 
-const input =
-document
-.getElementById("commandInput")
-.value
-.trim();
 
-if(!input){
+    clearInterval(taskProgressTimer);
 
-showToast(
-"Tell B2 what you want."
-);
+    clearInterval(resourceTimer);
 
-return;
 
-}
+    updateUI();
 
-document
-.getElementById("taskDescription")
-.value =
-input;
-
-document
-.getElementById("taskModal")
-.classList.add("active");
+    showToast(
+        "Task stopped."
+    );
 
 }
 
 
-/* =========================
-   BUY PACKAGE
-========================= */
+/* =====================================================
+   WALLET PACKAGE
+===================================================== */
 
-function buyPackage(amount){
+function selectPackage(amount){
 
-showToast(
-amount.toLocaleString() +
-" Credits selected. Payment will be connected later."
-);
+    showToast(
+        amount.toLocaleString() +
+        " Credits selected. Payment will be connected later."
+    );
 
 }
 
 
-/* =========================
+/* =====================================================
    MODAL
-========================= */
+===================================================== */
 
 function closeModal(id){
 
-document
-.getElementById(id)
-.classList.remove("active");
+    const modal =
+        document.getElementById(id);
+
+    if(modal){
+
+        modal.classList.remove("active");
+
+    }
 
 }
 
 
-/* =========================
+/* =====================================================
    TOAST
-========================= */
+===================================================== */
 
 function showToast(message){
 
-const toast =
-document.getElementById("toast");
+    const toast =
+        document.getElementById("toast");
 
-toast.innerText = message;
+    toast.innerText =
+        message;
 
-toast.classList.add("show");
+    toast.classList.add("show");
 
-setTimeout(()=>{
-toast.classList.remove("show");
-},2500);
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    },2500);
 
 }
 
 
-/* =========================
-   START
-========================= */
+/* =====================================================
+   INITIALIZE
+===================================================== */
 
 loadAgents();
 
 loadProjects();
 
-loadTasks();
+loadTaskCenter();
 
 updateUI();
 
